@@ -7,8 +7,6 @@ class TextureAttribute : public ShaderAttribute
 {
 public:
     TextureAttribute(GLint location);
-private:
-    void DefineAttributeArray();
 };
 
 #endif

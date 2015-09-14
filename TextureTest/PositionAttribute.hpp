@@ -7,8 +7,6 @@ class PositionAttribute : public ShaderAttribute
 {
 public:
     PositionAttribute(GLint location);
-private:
-    void DefineAttributeArray();
 };
 
 #endif

@@ -15,6 +15,7 @@ public:
 public:
     Vertex();
     Vertex(Vector2f Position, Color Color, Vector2f TexCoords);
+    Vertex(Vector2f Position, Color Color);
     Vertex(Vector2f Position, Vector2f TexCoords);
 };
 

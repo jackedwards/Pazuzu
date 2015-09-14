@@ -1,8 +1,14 @@
 #include "FragmentShader.hpp"
 
-FragmentShader::FragmentShader(const std::string& source)
+/**
+ * @brief Creates and compiles a fragment shader
+ *
+ * @param fileName Name of the shader source code file
+ */
+FragmentShader::FragmentShader(const std::string& fileName)
 {
     m_shader = glCreateShader(GL_FRAGMENT_SHADER);
-    SetSource(source);
+    std::string source = LoadSourceFromFile(fileName);
+    SetSource(source.c_str());
     Compile();
 }

@@ -38,7 +38,8 @@ int main()
     GLuint vbo;
     glGenBuffers(1, &vbo);
     
-    Vertex vertices[] = {
+    Vertex vertices[] =
+    {
         Vertex(Vector2f(-0.5f, 0.5f), Vector2f(0.0f, 0.0f)),
         Vertex(Vector2f(0.5f, 0.5f), Vector2f(1.0f, 0.0f)),
         Vertex(Vector2f(0.5f, -0.5f), Vector2f(1.0f, 1.0f)),
@@ -51,7 +52,8 @@ int main()
     GLuint ebo;
     glGenBuffers(1, &ebo);
     
-    GLuint elements[] = {
+    GLuint elements[] =
+    {
         0, 1, 2,
         2, 3, 0
     };
@@ -62,15 +64,18 @@ int main()
     VertexShader vertShader("vertex-shader.glsl");
     FragmentShader fragShader("fragment-shader.glsl");
     ShaderProgram shaderProgram(vertShader, fragShader);
+    shaderProgram.Use();
 
-    PositionAttribute posAttrib(shaderProgram.GetAttribute("position"));
-    ColorAttribute colAttrib(shaderProgram.GetAttribute("color"));
-    TextureAttribute texAttrib(shaderProgram.GetAttribute("texcoord"));
+    PositionAttribute posAttrib(shaderProgram.GetAttribLocation("position"));
+    ColorAttribute colAttrib(shaderProgram.GetAttribLocation("color"));
+    TextureAttribute texAttrib(shaderProgram.GetAttribLocation("texcoord"));
     
-    Texture texture("guy.bmp");
+    Texture texture("bliss.bmp");
     
-    while (!glfwWindowShouldClose(window)) {
-        if (glfwGetKey(window, GLFW_KEY_ESCAPE)) {
+    while (!glfwWindowShouldClose(window))
+    {
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE))
+        {
             glfwSetWindowShouldClose(window, true);
         }
         
@@ -79,7 +84,6 @@ int main()
         glfwSwapBuffers(window);
     }
     
-    //glDeleteTextures(1, &tex);
     texture.Delete();
 
     shaderProgram.Delete();

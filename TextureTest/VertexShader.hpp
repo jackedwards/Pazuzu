@@ -6,8 +6,7 @@
 class VertexShader : public Shader
 {
 public:
-    VertexShader(const std::string& source);
-    
+    VertexShader(const std::string& fileName);
 };
 
 #endif

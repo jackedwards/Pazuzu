@@ -7,8 +7,6 @@ class ColorAttribute : public ShaderAttribute
 {
 public:
     ColorAttribute(GLint location);
-private:
-    void DefineAttributeArray();
 };
 
 #endif

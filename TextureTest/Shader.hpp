@@ -17,7 +17,8 @@ public:
     virtual ~Shader() = 0;
     void Delete();
 protected:
-    void SetSource(const std::string& name);
+    std::string LoadSourceFromFile(const std::string& fileName);
+    void SetSource(const char* source);
     void Compile();
 };
 

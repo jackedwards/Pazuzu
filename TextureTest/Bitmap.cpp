@@ -1,18 +1,28 @@
+#include "Bitmap.hpp"
+
 /*--------------------------------------------------------*/
 /* CURRENTLY ONLY SUPPORTS UNCOMPRESSED, 24-BIT BMP FILES */
 /*--------------------------------------------------------*/
 
-#include "Bitmap.hpp"
-
-Bitmap::Bitmap(const std::string& name)
+/**
+ * @brief Creates a bitmap by loading it's data from a file
+ *
+ * @param fileName Name of the bitmap file
+ */
+Bitmap::Bitmap(const std::string& fileName)
 {
     m_isValid = false;
-    Load(name);
+    LoadFromFile(fileName);
 }
 
-void Bitmap::Load(const std::string& name)
+/**
+ * @brief Loads the bitmap data from a file
+ *
+ * @param fileName Name of the bitmap file
+ */
+void Bitmap::LoadFromFile(const std::string& fileName)
 {
-    std::ifstream file(name, std::ios::binary);
+    std::ifstream file(fileName, std::ios::binary);
     
     if (file.is_open()) {
         LoadFileHeader(file);
@@ -28,10 +38,15 @@ void Bitmap::Load(const std::string& name)
         file.close();
     }
     else {
-        printf("Failed to open %s\n", name.c_str());
+        printf("Failed to open %s\n", fileName.c_str());
     }
 }
 
+/**
+ * @brief Loads the file header
+ *
+ * @param file The input stream associated with the file
+ */
 void Bitmap::LoadFileHeader(std::ifstream& file)
 {
     file.read((GLchar*)&m_fileHeader, sizeof(m_fileHeader));
@@ -39,6 +54,11 @@ void Bitmap::LoadFileHeader(std::ifstream& file)
     m_fileSize = m_fileHeader.bfSize;
 }
 
+/**
+ * @brief Loads the info header
+ *
+ * @param file The input stream associated with the file
+ */
 void Bitmap::LoadInfoHeader(std::ifstream& file)
 {
     file.read((GLchar*)&m_infoHeader, sizeof(m_infoHeader));
@@ -48,6 +68,11 @@ void Bitmap::LoadInfoHeader(std::ifstream& file)
     m_bitDepth = m_infoHeader.biBitCount;
 }
 
+/**
+ * @brief Loads the BGR pixel data
+ *
+ * @param file The input stream associated with the file
+ */
 void Bitmap::LoadData(std::ifstream& file)
 {
     GLsizei numPixels = m_infoHeader.biWidth * m_infoHeader.biHeight;
@@ -70,6 +95,11 @@ void Bitmap::LoadData(std::ifstream& file)
     }
 }
 
+/**
+ * @brief Check if the file is a bitmap
+ *
+ * @return True if the file is a bitmap
+ */
 GLboolean Bitmap::IsBitmap()
 {
     GLboolean isBitmap = m_fileHeader.bfType == 0x4d42;
@@ -81,6 +111,11 @@ GLboolean Bitmap::IsBitmap()
     return isBitmap;
 }
 
+/**
+ * @brief Check if the image bit depth is 24-bit
+ *
+ * @return True if the image bit depth is 24-bit
+ */
 GLboolean Bitmap::IsValidBitDepth()
 {
     GLboolean isValidBitDepth = m_infoHeader.biBitCount == 0x18;

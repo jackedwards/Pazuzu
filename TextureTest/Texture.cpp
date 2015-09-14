@@ -1,5 +1,10 @@
 #include "Texture.hpp"
 
+/**
+ * @brief Creates a texture from the specified bitmap
+ *
+ * @param bitmap The bitmap image to be used by the texture
+ */
 Texture::Texture(const Bitmap& bitmap)
 {
     LoadFromBitmap(bitmap);
@@ -7,6 +12,11 @@ Texture::Texture(const Bitmap& bitmap)
     GenerateTexture();
 }
 
+/**
+ * @brief Creates a texture from a bitmap file
+ *
+ * @param fileName The name of the bitmap file to use
+ */
 Texture::Texture(const std::string& fileName)
 {
     LoadFromFile(fileName);
@@ -14,6 +24,11 @@ Texture::Texture(const std::string& fileName)
     GenerateTexture();
 }
 
+/**
+ * @brief Initialises the pixel data using the specified bitmap
+ *
+ * @param bitmap The bitmap to be used
+ */
 void Texture::LoadFromBitmap(const Bitmap& bitmap)
 {
     if (bitmap.m_isValid) {
@@ -33,12 +48,20 @@ void Texture::LoadFromBitmap(const Bitmap& bitmap)
     }
 }
 
+/**
+ * @brief Creates a bitmap from the specified file name and then initialises the pixel data
+ *
+ * @param fileName The name of the bitmap file
+ */
 void Texture::LoadFromFile(const std::string& fileName)
 {
     Bitmap bitmap(fileName);
     LoadFromBitmap(bitmap);
 }
 
+/**
+ * @brief Generates a texture and sets its parameters
+ */
 void Texture::GenerateTexture()
 {
     glGenTextures(1, &m_texId);
@@ -50,6 +73,9 @@ void Texture::GenerateTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 }
 
+/**
+ * @brief Deletes the texture
+ */
 void Texture::Delete()
 {
     glDeleteTextures(1, &m_texId);

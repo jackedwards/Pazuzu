@@ -58,7 +58,7 @@ private:
 
 public:
     Bitmap(const std::string&);
-    void Load(const std::string& name);
+    void LoadFromFile(const std::string& fileName);
     void LoadFileHeader(std::ifstream& file);
     void LoadInfoHeader(std::ifstream& file);
     void LoadData(std::ifstream& file);

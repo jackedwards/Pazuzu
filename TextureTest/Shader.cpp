@@ -1,23 +1,44 @@
 #include "Shader.hpp"
 
-void Shader::SetSource(const std::string& name)
+/**
+ * @brief  Returns shader source code loaded from a file with the specified filename
+ *
+ * @param  fileName Name of the shader source code file
+ * @return Shader source code if the file opened successfully,
+ *         otherwise an empty string
+ */
+std::string Shader::LoadSourceFromFile(const std::string& fileName)
 {
-    std::ifstream file(name);
-
+    std::ifstream file(fileName);
+    
     if (file.is_open()) {
         std::string source((std::istreambuf_iterator<char>(file)),
-                            std::istreambuf_iterator<char>());
-
+                           std::istreambuf_iterator<char>());
+        
         file.close();
-
-        const char* s = source.c_str();
-        glShaderSource(m_shader, 1, &s, NULL);
+        
+        return source;
     }
     else {
-        printf("Failed to open %s\n", name.c_str());
+        printf("Failed to open %s\n", fileName.c_str());
+        
+        return "";
     }
 }
 
+/**
+ * @brief Sets the source code for the shader
+ *
+ * @param source Source code for the shader
+ */
+void Shader::SetSource(const char* source)
+{
+    glShaderSource(m_shader, 1, &source, NULL);
+}
+
+/**
+ * @brief Compiles the shader
+ */
 void Shader::Compile()
 {
     GLint status;
@@ -35,6 +56,9 @@ void Shader::Compile()
     }
 }
 
+/**
+ * @brief Deletes the shader
+ */
 void Shader::Delete()
 {
     glDeleteShader(m_shader);

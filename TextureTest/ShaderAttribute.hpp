@@ -11,6 +11,7 @@ protected:
 public:
     ShaderAttribute(GLint location);
     virtual ~ShaderAttribute() = 0;
+private:
     void Enable();
 };
 
