@@ -1,0 +1,4 @@
+<Resources>
+	<Texture name="awesomeface" path="resources/awesomeface.bmp"></Texture>
+	<Texture name="bliss" path="resources/bliss.bmp"></Texture>
+</Resources>

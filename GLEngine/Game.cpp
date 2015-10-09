@@ -10,12 +10,6 @@ Game::Game(GLuint width, GLuint height)
 
 void Game::Init()
 {
-	/*m_texture1.LoadFromFile("resources/awesomeface.bmp");
-	m_sprite1.SetTexture(m_texture1);
-
-	m_texture2.LoadFromFile("resources/bliss.bmp");
-	m_sprite2.SetTexture(m_texture2);*/
-
 	m_sprite1.SetTexture(ResourceManager::GetTexture("awesomeface"));
 	m_sprite2.SetTexture(ResourceManager::GetTexture("bliss"));
 
