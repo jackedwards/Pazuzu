@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 Game::Game(GLuint width, GLuint height)
-	: m_state(GAME_ACTIVE), m_keys(), m_width(width), m_height(height), m_sprite1(glm::vec2(250, 250), glm::vec2(250, 250), 45.0f), m_sprite2(glm::vec2(50, 50), glm::vec2(200, 200), 0.0f)
+	: m_state(GAME_ACTIVE), m_keys(), m_width(width), m_height(height), m_sprite1(glm::vec2(250, 250), glm::vec2(250, 250), 45.0f), m_sprite2(glm::vec2(0, 0), glm::vec2(800, 600), 0.0f)
 {
 
 }
@@ -29,7 +29,7 @@ void Game::Init()
 
 void Game::Update(GLfloat dt)
 {
-	GLfloat rotation = 100.0f * dt;
+	GLfloat rotation = 5.0f * dt;
 	GLfloat currentRot = m_sprite1.GetRotation();
 
 	m_sprite1.SetRotation(currentRot + rotation);
@@ -42,6 +42,6 @@ void Game::ProcessInput(GLfloat dt)
 
 void Game::Render()
 {
-	mp_renderer->Draw(m_sprite1);
 	mp_renderer->Draw(m_sprite2);
+	mp_renderer->Draw(m_sprite1);
 }

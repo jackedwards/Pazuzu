@@ -17,8 +17,9 @@ int main()
     
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     
     window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "2D Engine", nullptr, nullptr);
@@ -30,7 +31,13 @@ int main()
 
 	glfwSetKeyCallback(window, KeyCallback);
 
-	glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	#ifdef __APPLE__
+		int width, height;
+		glfwGetFramebufferSize(window, &width, &height);
+		glViewport(0, 0, width, height);
+	#elif _WIN32
+		glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	#endif
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
