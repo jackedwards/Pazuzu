@@ -9,6 +9,7 @@
 #include "VertexShader.hpp"
 #include "FragmentShader.hpp"
 #include "Sprite.hpp"
+#include "ResourceManager.hpp"
 
 enum GameState
 {
@@ -25,8 +26,8 @@ public:
 	GLuint m_width, m_height;
 	Sprite m_sprite1;
 	Sprite m_sprite2;
-	Texture m_texture1;
-	Texture m_texture2;
+	//Texture m_texture1;
+	//Texture m_texture2;
 
 private:
 	SpriteRenderer* mp_renderer;

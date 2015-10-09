@@ -17,7 +17,7 @@ public:
 	Sprite();
 	Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation);
 	Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation, Color color);
-	void SetTexture(Texture& texture);
+	void SetTexture(Texture* p_texture);
 	void SetPosition(glm::vec2 position);
 	void SetSize(glm::vec2 size);
 	void SetRotation(GLfloat rotation);

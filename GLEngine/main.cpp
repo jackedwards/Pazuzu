@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Game.hpp"
+#include "ResourceManager.hpp"
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
@@ -42,6 +43,7 @@ int main()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	ResourceManager::LoadEverything();
 	game.Init();
 
 	GLfloat deltaTime = 0.0f;

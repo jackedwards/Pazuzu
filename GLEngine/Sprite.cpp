@@ -21,9 +21,9 @@ Sprite::Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation, Color color
 	m_color = color;
 }
 
-void Sprite::SetTexture(Texture& texture)
+void Sprite::SetTexture(Texture* p_texture)
 {
-	mp_texture = &texture;
+	mp_texture = p_texture;
 }
 
 void Sprite::SetPosition(glm::vec2 position)
