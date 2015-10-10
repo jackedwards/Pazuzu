@@ -10,6 +10,7 @@
 #include "FragmentShader.hpp"
 #include "Sprite.hpp"
 #include "ResourceManager.hpp"
+#include "GameObject.hpp"
 
 enum GameState
 {
@@ -26,6 +27,7 @@ public:
 	GLuint m_width, m_height;
 	Sprite m_sprite1;
 	Sprite m_sprite2;
+	GameObject m_player;
 
 private:
 	SpriteRenderer* mp_renderer;

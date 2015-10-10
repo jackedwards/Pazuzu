@@ -1,0 +1,6 @@
+#include "${FILENAME}.hpp"
+
+${FILENAME}::${FILENAME}()
+{
+	
+}

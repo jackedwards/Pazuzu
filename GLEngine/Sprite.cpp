@@ -21,6 +21,21 @@ Sprite::Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation, Color color
 	m_color = color;
 }
 
+void Sprite::Move(glm::vec2 position)
+{
+	m_position = m_position + position;
+}
+
+void Sprite::Scale(glm::vec2 size)
+{
+	m_size = m_size + size;
+}
+
+void Sprite::Rotate(GLfloat rotation)
+{
+	m_rotation = m_rotation + rotation;
+}
+
 void Sprite::SetTexture(Texture* p_texture)
 {
 	mp_texture = p_texture;

@@ -36,6 +36,32 @@ void SpriteRenderer::Draw(Sprite sprite)
 	glBindVertexArray(0);
 }
 
+void SpriteRenderer::Draw(GameObject gameObject)
+{
+	std::shared_ptr<SpriteComponent> spriteComp = gameObject.GetComponent<SpriteComponent>();
+	glm::vec2 position = gameObject.m_transform.GetPosition();
+	glm::vec2 size = gameObject.m_transform.GetSize();
+	GLfloat rotation = gameObject.m_transform.GetRotation();
+	Color color = spriteComp->GetColor();
+	const Texture* texture = spriteComp->GetTexture();
+
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(position, 0.0f));
+	model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+	model = glm::rotate(model, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+	model = glm::scale(model, glm::vec3(size, 1.0f));
+
+	glUniformMatrix4fv(m_shaderProgram.GetUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
+	glUniform3f(m_shaderProgram.GetUniformLocation("spriteColor"), color.r, color.g, color.b);
+
+	texture->Bind();
+
+	glBindVertexArray(m_vao);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
 void SpriteRenderer::InitRenderData()
 {
 	GLuint vbo;

@@ -1,0 +1,10 @@
+#ifndef ${FILENAMECAPS}_HPP
+#define ${FILENAMECAPS}_HPP
+
+class ${FILENAME}
+{
+public:
+	${FILENAME}();
+};
+
+#endif

@@ -9,6 +9,8 @@
 #include "Texture.hpp"
 #include "Color.hpp"
 #include "Sprite.hpp"
+#include "GameObject.hpp"
+#include "SpriteComponent.hpp"
 
 class SpriteRenderer
 {
@@ -22,6 +24,7 @@ public:
 
 public:
 	void Draw(Sprite sprite);
+	void Draw(GameObject gameObject);
 private:
 	void InitRenderData();
 };
