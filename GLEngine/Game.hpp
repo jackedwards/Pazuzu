@@ -1,6 +1,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <vector>
+#include <random>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "ErrorLogger.hpp"
@@ -25,8 +27,8 @@ public:
 	GameState m_state;
 	GLboolean m_keys[1024];
 	GLuint m_width, m_height;
-	GameObject m_player;
-	GameObject m_background;
+	std::vector<std::shared_ptr<GameObject> > m_gameObjects;
+	std::shared_ptr<GameObject> mp_background;
 
 private:
 	SpriteRenderer* mp_renderer;

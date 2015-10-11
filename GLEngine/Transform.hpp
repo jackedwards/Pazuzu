@@ -19,9 +19,11 @@ public:
 	void Scale(const glm::vec2& scale);
 	void Scale(const GLfloat& x, const GLfloat& y);
 	void Rotate(const GLfloat& rotation);
-	void SetPosition(const glm::vec2& position);
-	void SetSize(const glm::vec2& size);
-	void SetRotation(const GLfloat& rotation);
+	void SetPosition(const glm::vec2 position);
+	void SetPosition(const GLfloat x, const GLfloat y);
+	void SetSize(const glm::vec2 size);
+	void SetSize(const GLfloat x, const GLfloat y);
+	void SetRotation(const GLfloat rotation);
 	const glm::vec2& GetPosition() const;
 	const glm::vec2& GetSize() const;
 	const GLfloat& GetRotation() const;

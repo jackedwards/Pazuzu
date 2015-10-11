@@ -30,17 +30,27 @@ void Transform::Rotate(const GLfloat& rotation)
 	m_rotation += rotation;
 }
 
-void Transform::SetPosition(const glm::vec2& position)
+void Transform::SetPosition(const glm::vec2 position)
 {
 	m_position = position;
 }
 
-void Transform::SetSize(const glm::vec2& size)
+void Transform::SetPosition(const GLfloat x, const GLfloat y)
+{
+	m_position = glm::vec2(x, y);
+}
+
+void Transform::SetSize(const glm::vec2 size)
 {
 	m_size = size;
 }
 
-void Transform::SetRotation(const GLfloat& rotation)
+void Transform::SetSize(const GLfloat x, const GLfloat y)
+{
+	m_size = glm::vec2(x, y);
+}
+
+void Transform::SetRotation(const GLfloat rotation)
 {
 	m_rotation = rotation;
 }

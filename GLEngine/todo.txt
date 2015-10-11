@@ -1,0 +1,3 @@
+- Fix memory bug that causes program to crash
+	- Bug is somehow related to copy construction at Game.cpp:8
+	- Is also related to the GameObject's Transform member - if the member is removed, the bug does not occur

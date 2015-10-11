@@ -11,4 +11,3 @@ clang++ *.cpp -o pazuzu \
 -I/Users/jack/Documents/Programming/C++/Libraries/glm \
 -L/Users/jack/Documents/Programming/C++/Libraries/glew-1.12.0/lib -lglew \
 -L/Users/jack/Documents/Programming/C++/Libraries/glfw-3.1/src -lglfw3
-echo 'Compiled successfully!'
