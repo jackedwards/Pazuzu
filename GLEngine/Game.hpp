@@ -25,9 +25,8 @@ public:
 	GameState m_state;
 	GLboolean m_keys[1024];
 	GLuint m_width, m_height;
-	Sprite m_sprite1;
-	Sprite m_sprite2;
 	GameObject m_player;
+	GameObject m_background;
 
 private:
 	SpriteRenderer* mp_renderer;
