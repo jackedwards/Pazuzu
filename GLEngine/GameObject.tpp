@@ -7,6 +7,7 @@ void GameObject::AddComponent()
     {
 	    std::shared_ptr<T> component = std::make_shared<T>();
         component->m_gameObject = this;
+        component->Start();
 	    m_components.insert(std::pair<std::type_index, std::shared_ptr<Component> >(typeid(T), std::move(component)));
     }
 }

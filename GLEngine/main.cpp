@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include "Game.hpp"
 #include "ResourceManager.hpp"
+#include "Keyboard.hpp"
 
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 
@@ -39,6 +40,7 @@ int main()
 	#elif _WIN32
 		glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	#endif
+
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -56,7 +58,6 @@ int main()
 		lastFrame = currentFrame;
 		glfwPollEvents();
 
-		game.ProcessInput(deltaTime);
 		game.Update(deltaTime);
 
 		glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
@@ -77,8 +78,8 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)
-			game.m_keys[key] = GL_TRUE;
+			Keyboard::m_keys[key] = GL_TRUE;
 		else if (action == GLFW_RELEASE)
-			game.m_keys[key] = GL_FALSE;
+			Keyboard::m_keys[key] = GL_FALSE;
 	}
 }

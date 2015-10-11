@@ -6,6 +6,18 @@
 
 import sys
 
+def create_xml_file(file_name):
+	template_file = open("CodeTemplates/XMLFile.tem", "r")
+	new_file_contents = template_file.read()
+	new_file_contents = new_file_contents.replace("${FILENAME}", file_name.title())
+
+	file_name = file_name + ".xml"
+	new_file = open(file_name, "w")
+	new_file.write(new_file_contents)
+	new_file.close()
+
+	print(file_name + " created!")
+
 def create_cpp_file(class_name):
 	template_file = open("CodeTemplates/CppFile.tem", "r")
 	new_file_contents = template_file.read()
@@ -35,17 +47,34 @@ def create_class_files(class_name):
 	create_cpp_file(class_name)
 	create_header_file(class_name)
 
-def create_xml_file(file_name):
-	template_file = open("CodeTemplates/XMLFile.tem", "r")
+def create_component_cpp_file(component_name):
+	template_file = open("CodeTemplates/ComponentCpp.tem", "r")
 	new_file_contents = template_file.read()
-	new_file_contents = new_file_contents.replace("${FILENAME}", file_name.title())
+	new_file_contents = new_file_contents.replace("${FILENAME}", component_name)
 
-	file_name = file_name + ".xml"
+	file_name = component_name + ".cpp"
 	new_file = open(file_name, "w")
 	new_file.write(new_file_contents)
 	new_file.close()
 
 	print(file_name + " created!")
+
+def create_component_header_file(component_name):
+	template_file = open("CodeTemplates/ComponentHeader.tem", "r")
+	new_file_contents = template_file.read()
+	new_file_contents = new_file_contents.replace("${FILENAME}", component_name)
+	new_file_contents = new_file_contents.replace("${FILENAMECAPS}", component_name.upper())
+
+	file_name = component_name + ".hpp"
+	new_file = open(file_name, "w")
+	new_file.write(new_file_contents)
+	new_file.close()
+
+	print(file_name + " created!")
+
+def create_component_files(component_name):
+	create_component_cpp_file(component_name)
+	create_component_header_file(component_name)
 
 def main():
 	if len(sys.argv) == 3:
@@ -55,6 +84,8 @@ def main():
 				create_class_files(sys.argv[2])
 			elif arg.lower() == "xml":
 				create_xml_file(sys.argv[2])
+			elif arg.lower() == "component":
+				create_component_files(sys.argv[2])
 			else:
 				print("Command not found.")
 		else:

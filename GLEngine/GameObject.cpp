@@ -1,6 +1,6 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject() : mp_parent(nullptr), m_velocity(5, 5) { }
+GameObject::GameObject() : mp_parent(nullptr) { }
 
 GameObject::GameObject(std::string name) : mp_parent(nullptr), m_name(name) { }
 

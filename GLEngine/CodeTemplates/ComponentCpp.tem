@@ -1,0 +1,16 @@
+#include "${FILENAME}.hpp"
+
+${FILENAME}::${FILENAME}()
+{
+	
+}
+
+void ${FILENAME}::Start()
+{
+	
+}
+
+void ${FILENAME}::Update()
+{
+	
+}

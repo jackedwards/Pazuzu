@@ -1,0 +1,14 @@
+#ifndef ${FILENAMECAPS}_HPP
+#define ${FILENAMECAPS}_HPP
+
+#include "Component.hpp"
+
+class ${FILENAME} : public Component
+{
+public:
+	${FILENAME}();
+	virtual void Start() override;
+	virtual void Update() override;
+};
+
+#endif

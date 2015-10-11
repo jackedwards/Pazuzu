@@ -20,8 +20,6 @@ public:
 	std::vector<GameObject*> m_children;
 	std::string m_name;
 	Transform m_transform;
-	glm::vec2 m_velocity;
-private:
 	std::unordered_map<std::type_index, std::shared_ptr<Component> > m_components;
 
 public:
