@@ -9,6 +9,7 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "Transform.hpp"
+#include <memory>
 
 // Forward declaring to avoid circular inclusion
 class Component;

@@ -25,35 +25,56 @@
     <ClCompile Include="ErrorLogger.cpp" />
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerMoveComponent.cpp" />
     <ClCompile Include="PositionAttribute.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderAttribute.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureAttribute.cpp" />
+    <ClCompile Include="Token.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="VertexShader.cpp" />
+    <ClCompile Include="XMLFile.cpp" />
+    <ClCompile Include="XMLTag.cpp" />
+    <ClCompile Include="XMLValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bitmap.hpp" />
     <ClInclude Include="Color.hpp" />
     <ClInclude Include="ColorAttribute.hpp" />
+    <ClInclude Include="Component.hpp" />
     <ClInclude Include="ErrorLogger.hpp" />
     <ClInclude Include="FragmentShader.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="Keyboard.hpp" />
+    <ClInclude Include="PlayerMoveComponent.hpp" />
     <ClInclude Include="PositionAttribute.hpp" />
+    <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Shader.hpp" />
     <ClInclude Include="ShaderAttribute.hpp" />
     <ClInclude Include="ShaderProgram.hpp" />
     <ClInclude Include="Sprite.hpp" />
+    <ClInclude Include="SpriteComponent.hpp" />
     <ClInclude Include="SpriteRenderer.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="TextureAttribute.hpp" />
+    <ClInclude Include="Token.hpp" />
+    <ClInclude Include="Transform.hpp" />
     <ClInclude Include="Vertex.hpp" />
     <ClInclude Include="VertexShader.hpp" />
+    <ClInclude Include="XMLFile.hpp" />
+    <ClInclude Include="XMLTag.hpp" />
+    <ClInclude Include="XMLValue.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\awesomeface.bmp" />
@@ -63,6 +84,7 @@
     <Image Include="resources\opengl.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GameObject.tpp" />
     <None Include="shaders\fragment-shader.glsl" />
     <None Include="shaders\vertex-shader.glsl" />
   </ItemGroup>
