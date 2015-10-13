@@ -1,9 +1,19 @@
 #include "Transform.hpp"
 
-Transform::Transform() : m_position(0.0f, 0.0f), m_size(0.0f, 0.0f), m_rotation(0.0f) { }
+Transform::Transform()
+{
+	
+}
 
-Transform::Transform(glm::vec2 position, glm::vec2 size, GLfloat rotation)
-	: m_position(position), m_size(size), m_rotation(rotation) { }
+void Transform::Start()
+{
+	
+}
+
+void Transform::Update()
+{
+	
+}
 
 void Transform::Move(const glm::vec2& position)
 {
@@ -58,6 +68,7 @@ void Transform::SetRotation(const GLfloat rotation)
 const glm::vec2& Transform::GetPosition() const
 {
 	return m_position;
+	//return (mp_gameObject->mp_parent != nullptr) ? mp_parent->m_position + m_localPosition : m_position;
 }
 
 const glm::vec2& Transform::GetSize() const
@@ -68,4 +79,19 @@ const glm::vec2& Transform::GetSize() const
 const GLfloat& Transform::GetRotation() const
 {
 	return m_rotation;
+}
+
+const glm::vec2& Transform::GetLocalPosition() const
+{
+
+}
+
+const glm::vec2& Transform::GetLocalSize() const
+{
+
+}
+
+const GLfloat& Transform::GetLocalRotation() const
+{
+
 }

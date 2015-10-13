@@ -1,0 +1,33 @@
+Idea for XML based object creation:
+-	GameObject name and components stored in an XML tag
+-	Example:
+		<GameObject name="Player">
+			<Transform>
+				<Position x="0" y="0"></Position>
+				<Size x="0" y="0"></Size>
+				<Rotation value="0.0"></Rotation>
+			</Transform>
+			<Component name="Sprite"/></Component>
+			<Component name="RectangleCollider"/></Component>
+			<Component name="PlayerMove"/></Component>
+		</GameObject>
+
+- An unordered_map<std::string, std::type_index> could be used to convert component names to class types
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add GameObject
+- Set position to 50, 50
+- Add child GameObject
+- child.m_position = parent.m_position
+- On every update:
+	- child.m_localPosition = difference between child.m_position and parent.m_position
+
+- child.position = parent.position + child.localPosition ??
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+COLLISION:
+
+- RectangleCollider has a member function 'CollidingWith(RectangleCollider other)'
+- what next? -- finish later

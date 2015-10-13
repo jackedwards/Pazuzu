@@ -13,10 +13,13 @@ SpriteRenderer::~SpriteRenderer()
 
 void SpriteRenderer::Draw(std::shared_ptr<GameObject>& gameObject)
 {
-	std::shared_ptr<SpriteComponent> spriteComp = gameObject->GetComponent<SpriteComponent>();
-	glm::vec2 position = gameObject->m_transform.GetPosition();
-	glm::vec2 size = gameObject->m_transform.GetSize();
-	GLfloat rotation = gameObject->m_transform.GetRotation();
+	std::shared_ptr<Sprite> spriteComp = gameObject->GetComponent<Sprite>();
+	//glm::vec2 position = gameObject->m_transform.GetPosition();
+	//glm::vec2 size = gameObject->m_transform.GetSize();
+	//GLfloat rotation = gameObject->m_transform.GetRotation();
+	glm::vec2 position = gameObject->GetComponent<Transform>()->GetPosition();
+	glm::vec2 size = gameObject->GetComponent<Transform>()->GetSize();
+	GLfloat rotation = gameObject->GetComponent<Transform>()->GetRotation();
 	Color color = spriteComp->GetColor();
 	const Texture* texture = spriteComp->GetTexture();
 

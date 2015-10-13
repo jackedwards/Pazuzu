@@ -1,19 +1,22 @@
 #ifndef TRANSFORM_HPP
 #define TRANSFORM_HPP
 
-#include <GL/glew.h>
-#include "glm/glm.hpp"
+#include "Component.hpp"
 
-class Transform
+class Transform : public Component
 {
-private:
+public:
 	glm::vec2 m_position;
 	glm::vec2 m_size;
 	GLfloat m_rotation;
+	glm::vec2 m_localPosition;
+	glm::vec2 m_localSize;
+	GLfloat m_localRotation;
 
 public:
 	Transform();
-	Transform(glm::vec2 position, glm::vec2 size, GLfloat rotation);
+	virtual void Start() override;
+	virtual void Update() override;
 	void Move(const glm::vec2& position);
 	void Move(const GLfloat& x, const GLfloat& y);
 	void Scale(const glm::vec2& scale);
@@ -27,6 +30,9 @@ public:
 	const glm::vec2& GetPosition() const;
 	const glm::vec2& GetSize() const;
 	const GLfloat& GetRotation() const;
+	const glm::vec2& GetLocalPosition() const;
+	const glm::vec2& GetLocalSize() const;
+	const GLfloat& GetLocalRotation() const;
 };
 
 #endif

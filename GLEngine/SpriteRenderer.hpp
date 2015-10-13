@@ -10,7 +10,8 @@
 #include "Color.hpp"
 #include "Sprite.hpp"
 #include "GameObject.hpp"
-#include "SpriteComponent.hpp"
+#include "Sprite.hpp"
+#include "Transform.hpp"
 
 class SpriteRenderer
 {

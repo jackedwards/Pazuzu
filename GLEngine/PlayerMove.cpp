@@ -1,17 +1,17 @@
-#include "PlayerMoveComponent.hpp"
+#include "PlayerMove.hpp"
 
-PlayerMoveComponent::PlayerMoveComponent()
+PlayerMove::PlayerMove()
 {
 	
 }
 
-void PlayerMoveComponent::Start()
+void PlayerMove::Start()
 {
 	m_speed = 5.0f;
 	m_velocity = glm::vec2(0, 0);
 }
 
-void PlayerMoveComponent::Update()
+void PlayerMove::Update()
 {
 	if (Keyboard::IsKeyPressed(GLFW_KEY_W))
 		m_velocity.y = -m_speed;
@@ -22,6 +22,6 @@ void PlayerMoveComponent::Update()
 	if (Keyboard::IsKeyPressed(GLFW_KEY_D))
 		m_velocity.x = m_speed;
 
-	m_gameObject->m_transform.Move(m_velocity);
+	m_gameObject->GetComponent<Transform>()->Move(m_velocity);
 	m_velocity = glm::vec2(0, 0);
 }

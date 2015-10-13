@@ -8,7 +8,6 @@
 #include <type_traits>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
-#include "Transform.hpp"
 #include <memory>
 
 // Forward declaring to avoid circular inclusion
@@ -18,9 +17,8 @@ class GameObject
 {
 public:
 	GameObject* mp_parent;
-	std::vector<GameObject*> m_children;
+	std::vector<std::shared_ptr<GameObject> > m_children;
 	std::string m_name;
-	Transform m_transform;
 	std::unordered_map<std::type_index, std::shared_ptr<Component> > m_components;
 
 public:
@@ -28,6 +26,10 @@ public:
 	GameObject(std::string name);
 	GameObject(glm::vec2 position, glm::vec2 size, GLfloat rotation);
 	GameObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);
+	void AddChild();
+	void AddChild(std::string name);
+	void AddChild(glm::vec2 position, glm::vec2 size, GLfloat rotation);
+	void AddChild(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);
     template<class T> void AddComponent();
     template<class T> void RemoveComponent();
 	template<class T> bool HasComponent();
