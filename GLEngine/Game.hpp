@@ -11,9 +11,8 @@
 #include "Sprite.hpp"
 #include "ResourceManager.hpp"
 #include "GameObject.hpp"
-#include "Sprite.hpp"
-#include "PlayerMove.hpp"
-#include "Transform.hpp"
+#include "SpriteComponent.hpp"
+#include "PlayerMoveComponent.hpp"
 
 enum GameState
 {

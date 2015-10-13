@@ -4,28 +4,15 @@ Game::Game(GLuint width, GLuint height) : m_state(GAME_ACTIVE), m_width(width), 
 {
 	mp_background = std::make_shared<GameObject>(glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
 	mp_player = std::make_shared<GameObject>(glm::vec2(0, 0), glm::vec2(100, 100), 0.0f);
-	mp_player->AddChild(glm::vec2(0, 0), glm::vec2(50, 50), 90.0f);
 }
 
 void Game::Init()
 {
-	mp_background->AddComponent<Transform>();
-	mp_player->AddComponent<Transform>();
-	mp_player->m_children[0]->AddComponent<Transform>();
-
-	mp_background->AddComponent<Sprite>();
-	mp_player->AddComponent<Sprite>();
-	mp_player->m_children[0]->AddComponent<Sprite>();
-
-	mp_player->AddComponent<PlayerMove>();
-
-	mp_background->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("bliss"));
-	mp_player->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("awesomeface"));
-	mp_player->m_children[0]->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("bliss"));
-
-	mp_background->GetComponent<Transform>()->SetSize(glm::vec2(800, 600));
-	mp_player->GetComponent<Transform>()->SetPosition(glm::vec2(100, 100));
-	mp_player->GetComponent<Transform>()->SetSize(glm::vec2(100, 100));
+	mp_background->AddComponent<SpriteComponent>();
+	mp_background->GetComponent<SpriteComponent>()->SetTexture(ResourceManager::GetTexture("bliss"));
+	mp_player->AddComponent<SpriteComponent>();
+	mp_player->GetComponent<SpriteComponent>()->SetTexture(ResourceManager::GetTexture("awesomeface"));
+	mp_player->AddComponent<PlayerMoveComponent>();
 
 	VertexShader vertShader("shaders/vertex-shader.glsl");
 	FragmentShader fragShader("shaders/fragment-shader.glsl");
@@ -48,10 +35,8 @@ void Game::Update(GLfloat dt)
 
 void Game::Render()
 {
-	if (mp_background->HasComponent<Sprite>())
+	if (mp_background->HasComponent<SpriteComponent>())
 		mp_renderer->Draw(mp_background);
-	if (mp_player->HasComponent<Sprite>())
+	if (mp_player->HasComponent<SpriteComponent>())
 		mp_renderer->Draw(mp_player);
-	if (mp_player->m_children[0]->HasComponent<Sprite>())
-		mp_renderer->Draw(mp_player->m_children[0]);
 }

@@ -1,6 +1,7 @@
 #ifndef COMPONENT_HPP
 #define COMPONENT_HPP
 
+#include <memory>
 #include "GameObject.hpp"
 
 class Component
