@@ -22,6 +22,6 @@ void PlayerMove::Update()
 	if (Keyboard::IsKeyPressed(GLFW_KEY_D))
 		m_velocity.x = m_speed;
 
-	m_gameObject->GetComponent<Transform>()->Move(m_velocity);
+	m_gameObject->m_transform.Move(m_velocity);
 	m_velocity = glm::vec2(0, 0);
 }
