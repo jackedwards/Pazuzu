@@ -5,35 +5,14 @@ Sprite::Sprite()
 	
 }
 
-Sprite::Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation)
+void Sprite::Start()
 {
-	m_position = position;
-	m_size = size;
-	m_rotation = rotation;
-	m_color = Color();
+	
 }
 
-Sprite::Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation, Color color)
+void Sprite::Update()
 {
-	m_position = position;
-	m_size = size;
-	m_rotation = rotation;
-	m_color = color;
-}
-
-void Sprite::Move(glm::vec2 position)
-{
-	m_position = m_position + position;
-}
-
-void Sprite::Scale(glm::vec2 size)
-{
-	m_size = m_size + size;
-}
-
-void Sprite::Rotate(GLfloat rotation)
-{
-	m_rotation = m_rotation + rotation;
+	
 }
 
 void Sprite::SetTexture(Texture* p_texture)
@@ -41,22 +20,7 @@ void Sprite::SetTexture(Texture* p_texture)
 	mp_texture = p_texture;
 }
 
-void Sprite::SetPosition(glm::vec2 position)
-{
-	m_position = position;
-}
-
-void Sprite::SetSize(glm::vec2 size)
-{
-	m_size = size;
-}
-
-void Sprite::SetRotation(GLfloat rotation)
-{
-	m_rotation = rotation;
-}
-
-void Sprite::SetColor(Color color)
+void Sprite::SetColor(const Color& color)
 {
 	m_color = color;
 }
@@ -66,22 +30,7 @@ const Texture* Sprite::GetTexture() const
 	return mp_texture;
 }
 
-glm::vec2 Sprite::GetPosition() const
-{
-	return m_position;
-}
-
-glm::vec2 Sprite::GetSize() const
-{
-	return m_size;
-}
-
-GLfloat Sprite::GetRotation() const
-{
-	return m_rotation;
-}
-
-Color Sprite::GetColor() const
+const Color& Sprite::GetColor() const
 {
 	return m_color;
 }

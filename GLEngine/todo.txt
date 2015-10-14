@@ -1,0 +1,16 @@
+1. Make Transform a component
+2. Add AABB collision component
+3. Allow GameObjects to have parents + children
+4. Make each GameObject's transform relative to their parent GameObject's transform
+
+Component has 'OnCollisionEnter(Collider coll)' function
+It does nothing by default
+Can be overridded in derived components to do something (such as lower player health)
+
+CollisionManager loops over all GameObjects
+if objectA.HasComponent<Collider>() and objectB.HasComponent<Collider>()
+	if (objectA.collider.CollidingWith(objectB.collider))
+		foreach (Component component : objectA.m_components)
+			component.OnCollisionEnter(objectB.GetComponent<Collider>())
+		foreach (Component component : objectB.m_components)
+			component.OnCollisionEnter(objectA.GetComponent<Collider>())

@@ -1,11 +1,11 @@
 #ifndef PLAYERMOVE_HPP
 #define PLAYERMOVE_HPP
 
+#include <iostream>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "Component.hpp"
 #include "Keyboard.hpp"
-#include "Transform.hpp"
 
 class PlayerMove : public Component
 {
@@ -17,6 +17,7 @@ public:
 	PlayerMove();
 	virtual void Start() override;
 	virtual void Update() override;
+	virtual void OnCollisionEnter() override;
 };
 
 #endif

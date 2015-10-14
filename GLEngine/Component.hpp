@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "GameObject.hpp"
+#include "Collision.hpp"
 
 class Component
 {
@@ -13,6 +14,7 @@ public:
 	virtual ~Component() { }
 	virtual void Start() = 0;
 	virtual void Update() = 0;
+	virtual void OnCollisionEnter() { }
 };
 
 #endif

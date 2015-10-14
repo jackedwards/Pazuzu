@@ -1,35 +1,29 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
-#include "glm/glm.hpp"
+#include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "Component.hpp"
 #include "Texture.hpp"
+#include "Color.hpp"
+#include "ShaderProgram.hpp"
 
-class Sprite
+class Sprite : public Component
 {
 private:
 	Texture* mp_texture;
-	glm::vec2 m_position;
-	glm::vec2 m_size;
-	GLfloat m_rotation;
 	Color m_color;
 
 public:
 	Sprite();
-	Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation);
-	Sprite(glm::vec2 position, glm::vec2 size, GLfloat rotation, Color color);
-	void Move(glm::vec2 position);
-	void Scale(glm::vec2 size);
-	void Rotate(GLfloat rotation);
+	virtual void Start() override;
+	virtual void Update() override;
 	void SetTexture(Texture* p_texture);
-	void SetPosition(glm::vec2 position);
-	void SetSize(glm::vec2 size);
-	void SetRotation(GLfloat rotation);
-	void SetColor(Color color);
+	void SetColor(const Color& color);
 	const Texture* GetTexture() const;
-	glm::vec2 GetPosition() const;
-	glm::vec2 GetSize() const;
-	GLfloat GetRotation() const;
-	Color GetColor() const;
+	const Color& GetColor() const;
 };
 
 #endif

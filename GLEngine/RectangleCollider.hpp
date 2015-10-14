@@ -1,9 +1,11 @@
 #ifndef RECTANGLECOLLIDER_HPP
 #define RECTANGLECOLLIDER_HPP
 
+#include <iostream>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "Component.hpp"
+#include "Transform.hpp"
 
 class RectangleCollider : public Component
 {
@@ -15,7 +17,7 @@ public:
 	RectangleCollider();
 	virtual void Start() override;
 	virtual void Update() override;
-	GLboolean CollidingWith(RectangleCollider& other);
+	GLboolean CollidingWith(std::shared_ptr<RectangleCollider>& other);
 };
 
 #endif

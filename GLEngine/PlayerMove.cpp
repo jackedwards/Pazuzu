@@ -25,3 +25,9 @@ void PlayerMove::Update()
 	m_gameObject->m_transform.Move(m_velocity);
 	m_velocity = glm::vec2(0, 0);
 }
+
+
+void PlayerMove::OnCollisionEnter()
+{
+	std::cout << "PlayerMove: Colliding!\n";
+}
