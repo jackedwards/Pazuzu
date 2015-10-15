@@ -3,12 +3,8 @@
 Game::Game(GLuint width, GLuint height) : m_state(GAME_ACTIVE), m_width(width), m_height(height)
 {
 	mp_background = std::make_shared<GameObject>(glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
-
-	std::shared_ptr<GameObject> player = std::make_shared<GameObject>(glm::vec2(0, 0), glm::vec2(100, 100), 0.0f);
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>(glm::vec2(300, 300), glm::vec2(100, 100), 0.0f);
-
-	m_gameObjects.push_back(player);
-	m_gameObjects.push_back(enemy);
+	m_gameObjects.push_back(std::make_shared<GameObject>("Player", glm::vec2(0, 0), glm::vec2(100, 100), 0.0f));
+	m_gameObjects.push_back(std::make_shared<GameObject>("Enemy", glm::vec2(300, 300), glm::vec2(100, 100), 0.0f));
 }
 
 void Game::Init()
@@ -25,10 +21,6 @@ void Game::Init()
 
 	m_gameObjects[0]->AddComponent<PlayerMove>();
 
-	//mp_player->AddComponent<Sprite>();
-	//mp_player->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("awesomeface"));
-	//mp_player->AddComponent<PlayerMove>();
-
 	VertexShader vertShader("shaders/vertex-shader.glsl");
 	FragmentShader fragShader("shaders/fragment-shader.glsl");
 	ShaderProgram shaderProgram(vertShader, fragShader);
@@ -44,9 +36,6 @@ void Game::Init()
 
 void Game::Update(GLfloat dt)
 {
-	//for (auto& kv : mp_player->m_components)
-	//	kv.second->Update();
-
 	for (auto& gameObject : m_gameObjects)
 		for (auto& kv : gameObject->m_components)
 			kv.second->Update();
@@ -65,8 +54,6 @@ void Game::Render()
 {
 	if (mp_background->HasComponent<Sprite>())
 		mp_renderer->Draw(mp_background);
-	//if (mp_player->HasComponent<Sprite>())
-	//	mp_renderer->Draw(mp_player);
 
 	for (auto& gameObject : m_gameObjects)
 		if (gameObject->HasComponent<Sprite>())
@@ -83,7 +70,7 @@ void Game::CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_ptr
 		if (colliderA->CollidingWith(colliderB))
 		{
 			for (auto& kv : objectA->m_components)
-				kv.second->OnCollisionEnter(); // Change collider to Collision object
+				kv.second->OnCollisionEnter(colliderB->m_collision);
 		}
 	}
 }

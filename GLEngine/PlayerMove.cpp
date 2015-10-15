@@ -22,12 +22,27 @@ void PlayerMove::Update()
 	if (Keyboard::IsKeyPressed(GLFW_KEY_D))
 		m_velocity.x = m_speed;
 
-	m_gameObject->m_transform.Move(m_velocity);
+	mp_gameObject->m_transform.Move(m_velocity);
 	m_velocity = glm::vec2(0, 0);
 }
 
 
-void PlayerMove::OnCollisionEnter()
+void PlayerMove::OnCollisionEnter(Collision collision)
 {
-	std::cout << "PlayerMove: Colliding!\n";
+	if (!m_inverse)
+	{
+		collision.mp_gameObject->m_transform.Scale(-1.0f, -1.0f);
+		glm::vec2 size = collision.mp_gameObject->m_transform.GetSize();
+
+		if (size.x <= 5 && size.y <= 5)
+			m_inverse = true;
+	}
+	else
+	{
+		collision.mp_gameObject->m_transform.Scale(1.0f, 1.0f);
+		glm::vec2 size = collision.mp_gameObject->m_transform.GetSize();
+
+		if (size.x >= 150 && size.y <= 150)
+			m_inverse = false;
+	}
 }

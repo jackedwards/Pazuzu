@@ -2,19 +2,18 @@
 
 RectangleCollider::RectangleCollider()
 {
-	//m_position = m_gameObject->m_transform.GetPosition();
-	//m_size = m_gameObject->m_transform.GetSize();
+
 }
 
 void RectangleCollider::Start()
 {
-	
+	m_collision.mp_gameObject = mp_gameObject;
 }
 
 void RectangleCollider::Update()
 {
-	m_size = m_gameObject->m_transform.GetSize();
-	m_position = m_gameObject->m_transform.GetPosition();
+	m_size = mp_gameObject->m_transform.GetSize();
+	m_position = mp_gameObject->m_transform.GetPosition();
 }
 
 GLboolean RectangleCollider::CollidingWith(std::shared_ptr<RectangleCollider>& other)

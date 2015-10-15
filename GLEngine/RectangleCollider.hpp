@@ -6,9 +6,13 @@
 #include <glm/glm.hpp>
 #include "Component.hpp"
 #include "Transform.hpp"
+#include "Collision.hpp"
 
 class RectangleCollider : public Component
 {
+public:
+	Collision m_collision;
+
 private:
 	glm::vec2 m_position;
 	glm::vec2 m_size;

@@ -8,13 +8,13 @@
 class Component
 {
 public:
-	GameObject* m_gameObject;
+	GameObject* mp_gameObject;
 
 public:
 	virtual ~Component() { }
 	virtual void Start() = 0;
 	virtual void Update() = 0;
-	virtual void OnCollisionEnter() { }
+	virtual void OnCollisionEnter(Collision collision) { }
 };
 
 #endif
