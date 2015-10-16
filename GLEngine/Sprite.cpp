@@ -1,6 +1,6 @@
 #include "Sprite.hpp"
 
-Sprite::Sprite()
+Sprite::Sprite(GameObject* gameObject) : Component(gameObject)
 {
 	
 }

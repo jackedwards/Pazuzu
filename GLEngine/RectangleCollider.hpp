@@ -18,7 +18,7 @@ private:
 	glm::vec2 m_size;
 
 public:
-	RectangleCollider();
+	RectangleCollider(GameObject* gameObject);
 	virtual void Start() override;
 	virtual void Update() override;
 	GLboolean CollidingWith(std::shared_ptr<RectangleCollider>& other);

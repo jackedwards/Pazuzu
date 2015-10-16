@@ -1,6 +1,6 @@
 #include "Collision.hpp"
 
-Collision::Collision()
+Collision::Collision(GameObject* gameObject) : mp_gameObject(gameObject)
 {
 	
 }

@@ -11,6 +11,7 @@ public:
 	GameObject* mp_gameObject;
 
 public:
+	Component(GameObject* gameObject) : mp_gameObject(gameObject) { }
 	virtual ~Component() { }
 	virtual void Start() = 0;
 	virtual void Update() = 0;

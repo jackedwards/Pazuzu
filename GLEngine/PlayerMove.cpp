@@ -1,6 +1,6 @@
 #include "PlayerMove.hpp"
 
-PlayerMove::PlayerMove()
+PlayerMove::PlayerMove(GameObject* gameObject) : Component(gameObject)
 {
 	
 }

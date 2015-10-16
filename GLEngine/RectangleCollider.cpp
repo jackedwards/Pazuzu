@@ -1,13 +1,14 @@
 #include "RectangleCollider.hpp"
 
-RectangleCollider::RectangleCollider()
+RectangleCollider::RectangleCollider(GameObject* gameObject)
+	: Component(gameObject), m_collision(gameObject)
 {
 
 }
 
 void RectangleCollider::Start()
 {
-	m_collision.mp_gameObject = mp_gameObject;
+	
 }
 
 void RectangleCollider::Update()

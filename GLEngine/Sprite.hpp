@@ -17,7 +17,7 @@ private:
 	Color m_color;
 
 public:
-	Sprite();
+	Sprite(GameObject* gameObject);
 	virtual void Start() override;
 	virtual void Update() override;
 	void SetTexture(Texture* p_texture);

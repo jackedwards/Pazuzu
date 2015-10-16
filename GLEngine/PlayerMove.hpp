@@ -15,7 +15,7 @@ private:
 	GLboolean m_inverse;
 
 public:
-	PlayerMove();
+	PlayerMove(GameObject* gameObject);
 	virtual void Start() override;
 	virtual void Update() override;
 	virtual void OnCollisionEnter(Collision collision) override;

@@ -9,7 +9,7 @@ public:
 	GameObject* mp_gameObject;
 
 public:
-	Collision();
+	Collision(GameObject* gameObject);
 };
 
 #endif

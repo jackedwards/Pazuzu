@@ -2,9 +2,10 @@
 
 Game::Game(GLuint width, GLuint height) : m_state(GAME_ACTIVE), m_width(width), m_height(height)
 {
-	mp_background = std::make_shared<GameObject>(glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
+	mp_background = std::make_shared<GameObject>("Background", glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
 	m_gameObjects.push_back(std::make_shared<GameObject>("Player", glm::vec2(0, 0), glm::vec2(100, 100), 0.0f));
 	m_gameObjects.push_back(std::make_shared<GameObject>("Enemy", glm::vec2(300, 300), glm::vec2(100, 100), 0.0f));
+	m_gameObjects.push_back(std::make_shared<GameObject>("Enemy2", glm::vec2(450, 450), glm::vec2(75, 75), 0.0f));
 }
 
 void Game::Init()
