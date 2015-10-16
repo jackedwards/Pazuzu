@@ -14,23 +14,19 @@
 #include "GameObject.hpp"
 #include "Sprite.hpp"
 #include "PlayerMove.hpp"
+#include "EnemyMove.hpp"
 #include "RectangleCollider.hpp"
-
-enum GameState
-{
-	GAME_ACTIVE,
-	GAME_MENU,
-	GAME_WIN
-};
+#include "Rigidbody.hpp"
+#include "MainLevel.hpp"
 
 class Game
 {
 public:
-	GameState m_state;
 	GLuint m_width, m_height;
 	std::shared_ptr<GameObject> mp_background;
 	std::shared_ptr<GameObject> mp_player;
 	std::vector<std::shared_ptr<GameObject> > m_gameObjects;
+	std::vector<std::shared_ptr<Level> > m_levels;
 
 private:
 	SpriteRenderer* mp_renderer;

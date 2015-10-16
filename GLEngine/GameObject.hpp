@@ -24,7 +24,6 @@ public:
 	std::unordered_map<std::type_index, std::shared_ptr<Component> > m_components;
 
 public:
-	GameObject();
 	GameObject(std::string name);
 	GameObject(glm::vec2 position, glm::vec2 size, GLfloat rotation);
 	GameObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);

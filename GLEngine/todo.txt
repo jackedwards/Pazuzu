@@ -1,16 +1,19 @@
-1. Make Transform a component
-2. Add AABB collision component
-3. Allow GameObjects to have parents + children
-4. Make each GameObject's transform relative to their parent GameObject's transform
+LONG TERM:
+1. Hierarchical GameObjects
+2. Make each GameObject's transform relative to their parent GameObject's transform
+3. Level management
+4. PNG support for transparency
+5. Tilemaps
+6. Audio handling
+7. Improved input handling
+8. Particle system
+9. Simple rigidbody physics
+10. Data saving / loading
+11. Text rendering
+12. OPTIMIZE EVERYTHING
+13. Camera class, movable cameras etc.
+14. UI management (widgets and a method of describing them)
 
-Component has 'OnCollisionEnter(Collider coll)' function
-It does nothing by default
-Can be overridded in derived components to do something (such as lower player health)
-
-CollisionManager loops over all GameObjects
-if objectA.HasComponent<Collider>() and objectB.HasComponent<Collider>()
-	if (objectA.collider.CollidingWith(objectB.collider))
-		foreach (Component component : objectA.m_components)
-			component.OnCollisionEnter(objectB.GetComponent<Collider>())
-		foreach (Component component : objectB.m_components)
-			component.OnCollisionEnter(objectA.GetComponent<Collider>())
+SHORT TERM:
+1. Add tags to GameObjects
+2. Add rendering layers to sprites

@@ -1,26 +1,13 @@
 #include "Game.hpp"
 
-Game::Game(GLuint width, GLuint height) : m_state(GAME_ACTIVE), m_width(width), m_height(height)
+Game::Game(GLuint width, GLuint height) : m_width(width), m_height(height)
 {
-	mp_background = std::make_shared<GameObject>("Background", glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
-	m_gameObjects.push_back(std::make_shared<GameObject>("Player", glm::vec2(0, 0), glm::vec2(100, 100), 0.0f));
-	m_gameObjects.push_back(std::make_shared<GameObject>("Enemy", glm::vec2(300, 300), glm::vec2(100, 100), 0.0f));
-	m_gameObjects.push_back(std::make_shared<GameObject>("Enemy2", glm::vec2(450, 450), glm::vec2(75, 75), 0.0f));
+	m_levels.push_back(std::make_shared<MainLevel>());
 }
 
 void Game::Init()
 {
-	mp_background->AddComponent<Sprite>();
-	mp_background->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("bliss"));
-
-	for (std::shared_ptr<GameObject>& gameObject : m_gameObjects)
-	{
-		gameObject->AddComponent<Sprite>();
-		gameObject->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("awesomeface"));
-		gameObject->AddComponent<RectangleCollider>();
-	}
-
-	m_gameObjects[0]->AddComponent<PlayerMove>();
+	m_levels[0]->Init();
 
 	VertexShader vertShader("shaders/vertex-shader.glsl");
 	FragmentShader fragShader("shaders/fragment-shader.glsl");
@@ -37,41 +24,10 @@ void Game::Init()
 
 void Game::Update(GLfloat dt)
 {
-	for (auto& gameObject : m_gameObjects)
-		for (auto& kv : gameObject->m_components)
-			kv.second->Update();
-
-	for (int i = 0; i < m_gameObjects.size(); ++i)
-	{
-		for (int j = 0; j < m_gameObjects.size(); ++j)
-		{
-			if (m_gameObjects[i] != m_gameObjects[j])
-				CheckCollisions(m_gameObjects[i], m_gameObjects[j]);
-		}
-	}
+	m_levels[0]->Update(dt);
 }
 
 void Game::Render()
 {
-	if (mp_background->HasComponent<Sprite>())
-		mp_renderer->Draw(mp_background);
-
-	for (auto& gameObject : m_gameObjects)
-		if (gameObject->HasComponent<Sprite>())
-			mp_renderer->Draw(gameObject);
-}
-
-void Game::CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_ptr<GameObject>& objectB)
-{
-	if (objectA->HasComponent<RectangleCollider>() && objectB->HasComponent<RectangleCollider>())
-	{
-		std::shared_ptr<RectangleCollider> colliderA = objectA->GetComponent<RectangleCollider>();
-		std::shared_ptr<RectangleCollider> colliderB = objectB->GetComponent<RectangleCollider>();
-
-		if (colliderA->CollidingWith(colliderB))
-		{
-			for (auto& kv : objectA->m_components)
-				kv.second->OnCollisionEnter(colliderB->m_collision);
-		}
-	}
+	m_levels[0]->Render(mp_renderer);
 }
