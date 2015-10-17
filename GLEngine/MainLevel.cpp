@@ -23,4 +23,5 @@ void MainLevel::Init()
 	ball->AddComponent<Sprite>();
 	ball->GetComponent<Sprite>()->SetTexture(ResourceManager::GetTexture("awesomeface"));
 	ball->AddComponent<RectangleCollider>();
+	ball->AddComponent<BallMove>();
 }

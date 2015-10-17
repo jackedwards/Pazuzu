@@ -13,8 +13,6 @@
 #include "ResourceManager.hpp"
 #include "GameObject.hpp"
 #include "Sprite.hpp"
-#include "PlayerMove.hpp"
-#include "EnemyMove.hpp"
 #include "RectangleCollider.hpp"
 #include "Rigidbody.hpp"
 #include "MainLevel.hpp"

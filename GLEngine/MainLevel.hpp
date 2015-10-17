@@ -3,6 +3,7 @@
 
 #include "Level.hpp"
 #include "PlayerMove.hpp"
+#include "BallMove.hpp"
 
 class MainLevel : public Level
 {

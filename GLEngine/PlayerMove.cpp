@@ -2,7 +2,11 @@
 
 PlayerMove::PlayerMove(GameObject* gameObject) : Component(gameObject)
 {
-	
+	m_colors[0] = Color::Black;
+	m_colors[1] = Color::White;
+	m_colors[2] = Color::Red;
+	m_colors[3] = Color::Green;
+	m_colors[4] = Color::Blue;
 }
 
 void PlayerMove::Start()
@@ -31,5 +35,9 @@ void PlayerMove::Update()
 
 void PlayerMove::OnCollisionEnter(Collision collision)
 {
-
+	if (collision.mp_gameObject->m_name == "Ball")
+	{
+		GLint index = Random::GetRandomNumber(0, 5);
+		mp_gameObject->GetComponent<Sprite>()->SetColor(m_colors[index]);
+	}
 }

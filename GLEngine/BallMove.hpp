@@ -1,18 +1,18 @@
-#ifndef ENEMYMOVE_HPP
-#define ENEMYMOVE_HPP
+#ifndef BALLMOVE_HPP
+#define BALLMOVE_HPP
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "Component.hpp"
 
-class EnemyMove : public Component
+class BallMove : public Component
 {
 public:
-	const GLfloat m_speed = 8.0f;
+	const GLfloat m_speed = 10.0f;
 	glm::vec2 m_velocity;
 
 public:
-	EnemyMove(GameObject* gameObject);
+	BallMove(GameObject* gameObject);
 	virtual void Start() override;
 	virtual void Update() override;
 	virtual void OnCollisionEnter(Collision collision) override;

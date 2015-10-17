@@ -1,16 +1,16 @@
-#include "EnemyMove.hpp"
+#include "BallMove.hpp"
 
-EnemyMove::EnemyMove(GameObject* gameObject) : Component(gameObject)
+BallMove::BallMove(GameObject* gameObject) : Component(gameObject)
 {
 	
 }
 
-void EnemyMove::Start()
+void BallMove::Start()
 {
 	m_velocity = glm::vec2(m_speed, m_speed);
 }
 
-void EnemyMove::Update()
+void BallMove::Update()
 {
 	mp_gameObject->m_transform.Move(m_velocity);
 	glm::vec2 position = mp_gameObject->m_transform.GetPosition();
@@ -22,10 +22,10 @@ void EnemyMove::Update()
 		m_velocity.y = -m_velocity.y;
 }
 
-void EnemyMove::OnCollisionEnter(Collision collision)
+void BallMove::OnCollisionEnter(Collision collision)
 {
 	if (collision.mp_gameObject->m_name == "Player")
 	{
-		m_velocity = -m_velocity;
+		m_velocity.y = -m_velocity.y;
 	}
 }
