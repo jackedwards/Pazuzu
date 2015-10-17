@@ -1,4 +1,6 @@
 <Resources>
-	<Texture name="awesomeface" path="resources/awesomeface.bmp"></Texture>
-	<Texture name="bliss" path="resources/bliss.bmp"></Texture>
+	<Texture Name="awesomeface" Path="resources/awesomeface.bmp"></Texture>
+	<Texture Name="bliss" Path="resources/bliss.bmp"></Texture>
+	<Shader Name="default" VertexPath="shaders/vertex-shader.glsl" FragmentPath="shaders/fragment-shader.glsl"></Shader>
+	<Shader Name="red" VertexPath="shaders/vertex-shader.glsl" FragmentPath="shaders/fragment-shader2.glsl"></Shader>
 </Resources>

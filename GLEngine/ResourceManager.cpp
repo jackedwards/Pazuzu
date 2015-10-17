@@ -1,7 +1,9 @@
 #include "ResourceManager.hpp"
 
 std::unordered_map<std::string, Texture*> ResourceManager::m_textures;
+std::unordered_map<std::string, ShaderProgram> ResourceManager::m_shaderPrograms;
 std::vector<std::string> ResourceManager::m_texturePaths;
+std::vector<std::string> ResourceManager::m_shaderPaths;
 XMLFile ResourceManager::m_resourceInfo;
 
 ResourceManager::ResourceManager() { }
@@ -10,6 +12,7 @@ void ResourceManager::LoadEverything()
 {
 	m_resourceInfo.Load("resources/resources.xml");
 	LoadTextures();
+	LoadShaderPrograms();
 }
 
 Texture* ResourceManager::GetTexture(std::string name)
@@ -17,11 +20,16 @@ Texture* ResourceManager::GetTexture(std::string name)
 	return m_textures[name];
 }
 
-void ResourceManager::LoadTexture(std::string path, std::string name)
+ShaderProgram& ResourceManager::GetShaderProgram(std::string name)
 {
-	Texture* p_texture = new Texture();
-	p_texture->LoadFromFile(path);
-	m_textures[name] = p_texture;
+	return m_shaderPrograms[name];
+}
+
+void ResourceManager::LoadTexture(std::string name, std::string path)
+{
+	Texture* texture = new Texture();
+	texture->LoadFromFile(path);
+	m_textures[name] = texture;
 }
 
 void ResourceManager::LoadTextures()
@@ -30,6 +38,24 @@ void ResourceManager::LoadTextures()
 
 	for (XMLTag* tag : tags)
 	{
-		LoadTexture(tag->m_attributes["path"].ToString(), tag->m_attributes["name"].ToString());
+		LoadTexture(tag->m_attributes["Name"].ToString(), tag->m_attributes["Path"].ToString());
+	}
+}
+
+void ResourceManager::LoadShaderProgram(std::string name, std::string vertexPath, std::string fragmentPath)
+{
+	VertexShader vertexShader(vertexPath);
+	FragmentShader fragmentShader(fragmentPath);
+	ShaderProgram shaderProgram = ShaderProgram(vertexShader, fragmentShader);
+	m_shaderPrograms[name] = shaderProgram;
+}
+
+void ResourceManager::LoadShaderPrograms()
+{
+	std::vector<XMLTag*> tags = m_resourceInfo.m_root->GetFirstChild("Resources")->GetChildren("Shader");
+
+	for (XMLTag* tag : tags)
+	{
+		LoadShaderProgram(tag->m_attributes["Name"].ToString(), tag->m_attributes["VertexPath"].ToString(), tag->m_attributes["FragmentPath"].ToString());
 	}
 }

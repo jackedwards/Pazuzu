@@ -14,7 +14,6 @@ class PlayerMove : public Component
 private:
 	glm::vec2 m_velocity;
 	GLfloat m_speed;
-	Color m_colors[5];
 
 public:
 	PlayerMove(GameObject* gameObject);
