@@ -12,7 +12,6 @@ class PlayerMove : public Component
 private:
 	glm::vec2 m_velocity;
 	GLfloat m_speed;
-	GLboolean m_inverse;
 
 public:
 	PlayerMove(GameObject* gameObject);
