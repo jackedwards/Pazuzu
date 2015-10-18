@@ -15,11 +15,10 @@
 class SpriteRenderer
 {
 private:
-	ShaderProgram m_shaderProgram;
 	GLuint m_vao;
 
 public:
-	SpriteRenderer(ShaderProgram& shaderProgram);
+	SpriteRenderer();
 	~SpriteRenderer();
 
 public:

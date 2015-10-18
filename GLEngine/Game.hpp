@@ -10,7 +10,7 @@
 #include "VertexShader.hpp"
 #include "FragmentShader.hpp"
 #include "Sprite.hpp"
-#include "ResourceManager.hpp"
+#include "Resources.hpp"
 #include "GameObject.hpp"
 #include "Sprite.hpp"
 #include "RectangleCollider.hpp"

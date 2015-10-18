@@ -6,7 +6,7 @@
 #include "Sprite.hpp"
 #include "SpriteRenderer.hpp"
 #include "RectangleCollider.hpp"
-#include "ResourceManager.hpp"
+#include "Resources.hpp"
 
 class Level
 {

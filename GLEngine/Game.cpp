@@ -9,17 +9,14 @@ void Game::Init()
 {
 	m_levels[0]->Init();
 
-	VertexShader vertShader("shaders/vertex-shader.glsl");
-	FragmentShader fragShader("shaders/fragment-shader.glsl");
-	ShaderProgram shaderProgram(vertShader, fragShader);
-
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(m_width), static_cast<GLfloat>(m_height), 0.0f, -1.0f, 1.0f);
 
-	shaderProgram.Use();
-	glUniform1i(shaderProgram.GetUniformLocation("image"), 0);
-	glUniformMatrix4fv(shaderProgram.GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	std::shared_ptr<ShaderProgram> shaderProgram = Resources::GetShaderProgram("default");
+	shaderProgram->Use();
+	glUniform1i(shaderProgram->GetUniformLocation("image"), 0);
+	glUniformMatrix4fv(shaderProgram->GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-	mp_renderer = new SpriteRenderer(shaderProgram);
+	mp_renderer = new SpriteRenderer();
 }
 
 void Game::Update(GLfloat dt)

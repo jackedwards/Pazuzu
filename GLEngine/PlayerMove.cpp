@@ -31,5 +31,5 @@ void PlayerMove::Update()
 
 void PlayerMove::OnCollisionEnter(Collision collision)
 {
-
+	
 }

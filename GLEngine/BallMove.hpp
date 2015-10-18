@@ -1,9 +1,11 @@
 #ifndef BALLMOVE_HPP
 #define BALLMOVE_HPP
 
+#include <math.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "Component.hpp"
+#include "Sprite.hpp"
 
 class BallMove : public Component
 {

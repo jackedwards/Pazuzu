@@ -8,6 +8,6 @@ uniform sampler2D image;
 uniform vec3 spriteColor;
 
 void main()
-{    
+{
     color = vec4(vec3(1.0, 0.0, 0.0), 1.0) * texture(image, TexCoords);
 } 

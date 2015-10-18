@@ -4,6 +4,7 @@
 #include <GL/glew.h>
 #include "VertexShader.hpp"
 #include "FragmentShader.hpp"
+#include "ErrorLogger.hpp"
 
 class ShaderProgram
 {

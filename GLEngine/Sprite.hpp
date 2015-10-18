@@ -9,9 +9,12 @@
 #include "Texture.hpp"
 #include "Color.hpp"
 #include "ShaderProgram.hpp"
+#include "Resources.hpp"
 
 class Sprite : public Component
 {
+public:
+	std::shared_ptr<ShaderProgram> mp_shaderProgram;
 private:
 	Texture* mp_texture;
 	Color m_color;

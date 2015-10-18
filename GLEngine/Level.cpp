@@ -4,14 +4,16 @@ void Level::Update(GLfloat dt)
 {
 	for (auto& gameObject : m_gameObjects)
 		for (auto& kv : gameObject->m_components)
-			kv.second->Update();
+			if (gameObject->m_enabled)
+				kv.second->Update();
 
 	for (int i = 0; i < m_gameObjects.size(); ++i)
 	{
 		for (int j = 0; j < m_gameObjects.size(); ++j)
 		{
-			if (m_gameObjects[i] != m_gameObjects[j])
-				CheckCollisions(m_gameObjects[i], m_gameObjects[j]);
+			if (m_gameObjects[i]->m_enabled && m_gameObjects[j]->m_enabled)
+				if (m_gameObjects[i] != m_gameObjects[j])
+					CheckCollisions(m_gameObjects[i], m_gameObjects[j]);
 		}
 	}
 }
@@ -19,8 +21,9 @@ void Level::Update(GLfloat dt)
 void Level::Render(SpriteRenderer* renderer)
 {
 	for (auto& gameObject : m_gameObjects)
-		if (gameObject->HasComponent<Sprite>())
-			renderer->Draw(gameObject);
+		if (gameObject->m_enabled)
+			if (gameObject->HasComponent<Sprite>())
+				renderer->Draw(gameObject);
 }
 
 void Level::CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_ptr<GameObject>& objectB)

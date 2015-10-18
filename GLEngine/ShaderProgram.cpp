@@ -18,9 +18,16 @@ ShaderProgram::ShaderProgram()
 ShaderProgram::ShaderProgram(VertexShader& vert, FragmentShader& frag)
 {
     m_id = glCreateProgram();
+    ErrorLogger::CheckForErrors("glCreateProgram");
+
     glAttachShader(m_id, vert.m_id);
+    ErrorLogger::CheckForErrors("glAttachShader - vertex shader");
     glAttachShader(m_id, frag.m_id);
-	glLinkProgram(this->m_id);
+    ErrorLogger::CheckForErrors("glAttachShader - fragment shader");
+	glLinkProgram(m_id);
+    ErrorLogger::CheckForErrors("glLinkProgram");
+    vert.Delete();
+    frag.Delete();
 }
 
 /**
@@ -49,6 +56,7 @@ void ShaderProgram::Attach(Shader& shader)
 void ShaderProgram::Use()
 {
     glUseProgram(m_id);
+    ErrorLogger::CheckForErrors("glUseProgram");
 }
 
 /**
@@ -57,6 +65,7 @@ void ShaderProgram::Use()
 void ShaderProgram::Delete()
 {
     glDeleteProgram(m_id);
+    ErrorLogger::CheckForErrors("glDeleteProgram");
 }
 
 /**
@@ -67,10 +76,16 @@ void ShaderProgram::Delete()
  */
 GLint ShaderProgram::GetAttribLocation(const std::string& name)
 {
-    return glGetAttribLocation(m_id, name.c_str());
+    GLint location = glGetAttribLocation(m_id, name.c_str());
+    ErrorLogger::CheckForErrors("glGetAttribLocation");
+
+    return location;
 }
 
 GLint ShaderProgram::GetUniformLocation(const std::string& name)
 {
-	return glGetUniformLocation(m_id, name.c_str());
+    GLint location = glGetUniformLocation(m_id, name.c_str());
+    ErrorLogger::CheckForErrors("glGetUniformLocation");
+
+    return location;
 }

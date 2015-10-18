@@ -16,6 +16,9 @@ public:
     static const Color Red;
     static const Color Green;
     static const Color Blue;
+    static const Color Yellow;
+    static const Color Cyan;
+    static const Color Pink;
 
 public:
     Color();

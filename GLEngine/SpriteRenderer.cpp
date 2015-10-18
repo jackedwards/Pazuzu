@@ -1,8 +1,9 @@
 #include "SpriteRenderer.hpp"
 
-SpriteRenderer::SpriteRenderer(ShaderProgram& shaderProgram)
+SpriteRenderer::SpriteRenderer()
 {
-	this->m_shaderProgram = shaderProgram;
+	//this->mp_shaderProgram = shaderProgram;
+	//this->mp_shaderProgram = Resources::GetShaderProgram("default");
 	this->InitRenderData();
 }
 
@@ -27,8 +28,10 @@ void SpriteRenderer::Draw(std::shared_ptr<GameObject>& gameObject)
 	model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 	model = glm::scale(model, glm::vec3(size, 1.0f));
 
-	glUniformMatrix4fv(m_shaderProgram.GetUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniform3f(m_shaderProgram.GetUniformLocation("spriteColor"), color.r, color.g, color.b);
+	std::shared_ptr<ShaderProgram> shaderProgram = Resources::GetShaderProgram("red");
+	shaderProgram->Use();
+	glUniformMatrix4fv(shaderProgram->GetUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
+	glUniform3f(shaderProgram->GetUniformLocation("spriteColor"), color.r, color.g, color.b);
 
 	texture->Bind();
 

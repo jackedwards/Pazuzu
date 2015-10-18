@@ -44,7 +44,7 @@ void Texture::LoadFromBitmap(const Bitmap& bitmap)
         GLsizei numPixels = m_width * m_height;
         m_pixels.reserve(numPixels);
         
-        for (GLint i = 0; i < numPixels; ++i)
+        for (size_t i = 0; i < numPixels; ++i)
 		{
             GLuint r = bitmap.m_pixelData[i].rgbRed;
             GLuint g = bitmap.m_pixelData[i].rgbGreen;
@@ -53,6 +53,14 @@ void Texture::LoadFromBitmap(const Bitmap& bitmap)
             m_pixels.push_back(Color(r, g, b).Normalise());
         }
     }
+}
+
+void Texture::LoadFromPNG(const std::string& fileName)
+{
+    /*mp_data = stbi_load(fileName.c_str(), &m_width, &m_height, &m_bpp, 4);
+
+    if (mp_data == nullptr)
+        throw("Failed to load texture.\n");*/
 }
 
 /**
@@ -64,6 +72,7 @@ void Texture::LoadFromFile(const std::string& fileName)
 {
     Bitmap bitmap(fileName);
     LoadFromBitmap(bitmap);
+    //LoadFromPNG(fileName);
 	Generate();
 }
 
@@ -97,4 +106,5 @@ void Texture::Bind() const
 void Texture::Delete()
 {
     glDeleteTextures(1, &this->m_id);
+    //stbi_image_free(mp_data);
 }

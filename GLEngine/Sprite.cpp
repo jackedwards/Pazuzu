@@ -7,7 +7,7 @@ Sprite::Sprite(GameObject* gameObject) : Component(gameObject)
 
 void Sprite::Start()
 {
-	
+	mp_shaderProgram = Resources::GetShaderProgram("red");
 }
 
 void Sprite::Update()

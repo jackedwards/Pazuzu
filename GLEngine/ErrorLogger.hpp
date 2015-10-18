@@ -8,7 +8,7 @@
 class ErrorLogger
 {
 public:
-	static void CheckForErrors(std::string text);
+	static void CheckForErrors(const std::string& text);
 };
 
 #endif
