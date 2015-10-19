@@ -10,6 +10,7 @@
 #include "Color.hpp"
 #include "ShaderProgram.hpp"
 #include "Resources.hpp"
+#include "BlendMode.hpp"
 
 class Sprite : public Component
 {
@@ -17,6 +18,7 @@ private:
 	Texture* mp_texture;
 	Color m_color;
 	std::shared_ptr<ShaderProgram> mp_shader;
+	BlendMode m_blendMode;
 
 public:
 	Sprite(GameObject* gameObject);
@@ -25,9 +27,11 @@ public:
 	void SetTexture(Texture* p_texture);
 	void SetColor(const Color& color);
 	void SetShader(const std::shared_ptr<ShaderProgram> shader);
+	void SetBlendMode(const BlendMode& blendMode);
 	const Texture* GetTexture() const;
 	const Color& GetColor() const;
 	const std::shared_ptr<ShaderProgram>& GetShader() const;
+	const BlendMode& GetBlendMode() const;
 };
 
 #endif

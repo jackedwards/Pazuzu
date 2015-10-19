@@ -11,11 +11,13 @@
 #include "Sprite.hpp"
 #include "GameObject.hpp"
 #include "Sprite.hpp"
+#include "BlendMode.hpp"
 
 class SpriteRenderer
 {
 private:
 	GLuint m_vao;
+	BlendMode m_blendMode;
 
 public:
 	SpriteRenderer();
@@ -25,6 +27,7 @@ public:
 	void Draw(std::shared_ptr<GameObject>& gameObject);
 private:
 	void InitRenderData();
+	void SwitchBlendMode(BlendMode blendMode);
 };
 
 #endif

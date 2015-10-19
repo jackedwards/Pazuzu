@@ -18,4 +18,4 @@ LONG TERM:
 SHORT TERM:
 1. Add tags to GameObjects
 2. Add rendering layers to sprites
-3. Allow shaders to be used on a per-sprite basis
+DONE! 3. Allow shaders to be used on a per-sprite basis

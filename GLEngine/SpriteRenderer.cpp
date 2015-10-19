@@ -18,6 +18,10 @@ void SpriteRenderer::Draw(std::shared_ptr<GameObject>& gameObject)
 	GLfloat rotation = gameObject->m_transform.GetRotation();
 	Color color = spriteComp->GetColor();
 	const Texture* texture = spriteComp->GetTexture();
+	BlendMode spriteBlendMode = spriteComp->GetBlendMode();
+
+	if (m_blendMode != spriteBlendMode)
+		SwitchBlendMode(spriteBlendMode);
 
 	glm::mat4 model;
 	model = glm::translate(model, glm::vec3(position, 0.0f));
@@ -62,4 +66,82 @@ void SpriteRenderer::InitRenderData()
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+}
+
+void SpriteRenderer::SwitchBlendMode(BlendMode blendMode)
+{
+	GLenum srcFactor;
+	GLenum dstFactor;
+
+	m_blendMode = blendMode;
+
+	switch (m_blendMode.m_colorSrcFactor)
+	{
+	case BlendMode::Zero:
+		srcFactor = GL_ZERO;
+		break;
+	case BlendMode::One:
+		srcFactor = GL_ONE;
+		break;
+	case BlendMode::SrcColor:
+		srcFactor = GL_SRC_COLOR;
+		break;
+	case BlendMode::OneMinusSrcColor:
+		srcFactor = GL_ONE_MINUS_SRC_COLOR;
+		break;
+	case BlendMode::DstColor:
+		srcFactor = GL_DST_COLOR;
+		break;
+	case BlendMode::OneMinusDstColor:
+		srcFactor = GL_ONE_MINUS_DST_COLOR;
+		break;
+	case BlendMode::SrcAlpha:
+		srcFactor = GL_SRC_ALPHA;
+		break;
+	case BlendMode::OneMinusSrcAlpha:
+		srcFactor = GL_ONE_MINUS_SRC_ALPHA;
+		break;
+	case BlendMode::DstAlpha:
+		srcFactor = GL_DST_ALPHA;
+		break;
+	case BlendMode::OneMinusDstAlpha:
+		srcFactor = GL_ONE_MINUS_DST_ALPHA;
+		break;
+	}
+
+	switch (m_blendMode.m_colorDstFactor)
+	{
+	case BlendMode::Zero:
+		dstFactor = GL_ZERO;
+		break;
+	case BlendMode::One:
+		dstFactor = GL_ONE;
+		break;
+	case BlendMode::SrcColor:
+		dstFactor = GL_SRC_COLOR;
+		break;
+	case BlendMode::OneMinusSrcColor:
+		dstFactor = GL_ONE_MINUS_SRC_COLOR;
+		break;
+	case BlendMode::DstColor:
+		dstFactor = GL_DST_COLOR;
+		break;
+	case BlendMode::OneMinusDstColor:
+		dstFactor = GL_ONE_MINUS_DST_COLOR;
+		break;
+	case BlendMode::SrcAlpha:
+		dstFactor = GL_SRC_ALPHA;
+		break;
+	case BlendMode::OneMinusSrcAlpha:
+		dstFactor = GL_ONE_MINUS_SRC_ALPHA;
+		break;
+	case BlendMode::DstAlpha:
+		dstFactor = GL_DST_ALPHA;
+		break;
+	case BlendMode::OneMinusDstAlpha:
+		dstFactor = GL_ONE_MINUS_DST_ALPHA;
+		break;
+	}
+
+	glBlendFunc(srcFactor, dstFactor);
 }
