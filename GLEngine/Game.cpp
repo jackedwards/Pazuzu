@@ -11,10 +11,8 @@ void Game::Init()
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(m_width), static_cast<GLfloat>(m_height), 0.0f, -1.0f, 1.0f);
 
-	std::shared_ptr<ShaderProgram> shaderProgram = Resources::GetShaderProgram("default");
-	shaderProgram->Use();
-	glUniform1i(shaderProgram->GetUniformLocation("image"), 0);
-	glUniformMatrix4fv(shaderProgram->GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(Resources::GetShader("default")->Use().GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(Resources::GetShader("red")->Use().GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 	mp_renderer = new SpriteRenderer();
 }

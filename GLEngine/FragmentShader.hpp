@@ -7,7 +7,6 @@ class FragmentShader : public Shader
 {
 public:
     FragmentShader(const std::string& fileName);
-	~FragmentShader();
 };
 
 #endif

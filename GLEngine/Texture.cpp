@@ -81,15 +81,15 @@ void Texture::LoadFromFile(const std::string& fileName)
  */
 void Texture::Generate()
 {
-    glGenTextures(1, &this->m_id);
+    glGenTextures(1, &this->m_id); ErrorLogger::CheckForErrors("glGenTextures");
 
-	glBindTexture(GL_TEXTURE_2D, this->m_id);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, this->m_wrapS);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, this->m_wrapT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, this->m_filterMin);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, this->m_filterMax);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_FLOAT, reinterpret_cast<GLchar*>(m_pixels.data()));
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, this->m_id); ErrorLogger::CheckForErrors("glBindTexture");
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, this->m_wrapS); ErrorLogger::CheckForErrors("glTexParameteri");
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, this->m_wrapT); ErrorLogger::CheckForErrors("glTexParameteri");
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, this->m_filterMin); ErrorLogger::CheckForErrors("glTexParameteri");
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, this->m_filterMax); ErrorLogger::CheckForErrors("glTexParameteri");
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_FLOAT, reinterpret_cast<GLchar*>(m_pixels.data())); ErrorLogger::CheckForErrors("glTexImage2D");
+	glBindTexture(GL_TEXTURE_2D, 0); ErrorLogger::CheckForErrors("glBindTexture");
 }
 
 /*
@@ -97,7 +97,7 @@ void Texture::Generate()
  */
 void Texture::Bind() const
 {
-	glBindTexture(GL_TEXTURE_2D, this->m_id);
+	glBindTexture(GL_TEXTURE_2D, this->m_id); ErrorLogger::CheckForErrors("glBindTexture");
 }
 
 /**
@@ -105,6 +105,6 @@ void Texture::Bind() const
  */
 void Texture::Delete()
 {
-    glDeleteTextures(1, &this->m_id);
+    glDeleteTextures(1, &this->m_id); ErrorLogger::CheckForErrors("glDeleteTextures");
     //stbi_image_free(mp_data);
 }

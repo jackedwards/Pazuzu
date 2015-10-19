@@ -20,7 +20,7 @@ Texture* Resources::GetTexture(const std::string& name)
 	return m_textures[name];
 }
 
-const std::shared_ptr<ShaderProgram>& Resources::GetShaderProgram(const std::string& name)
+const std::shared_ptr<ShaderProgram>& Resources::GetShader(const std::string& name)
 {
 	return m_shaderPrograms[name];
 }

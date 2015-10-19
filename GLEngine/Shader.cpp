@@ -11,15 +11,15 @@ std::string Shader::LoadSourceFromFile(const std::string& fileName)
 {
     std::ifstream file(fileName);
     
-    if (file.is_open()) {
-        std::string source((std::istreambuf_iterator<char>(file)),
-                           std::istreambuf_iterator<char>());
-        
+    if (file.is_open())
+    {
+        std::string source((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
         file.close();
         
         return source;
     }
-    else {
+    else
+    {
         printf("Failed to open %s\n", fileName.c_str());
         
         return "";
@@ -33,7 +33,7 @@ std::string Shader::LoadSourceFromFile(const std::string& fileName)
  */
 void Shader::SetSource(const char* source)
 {
-    glShaderSource(m_id, 1, &source, NULL);
+    glShaderSource(m_id, 1, &source, NULL); ErrorLogger::CheckForErrors("glShaderSource");
 }
 
 /**
@@ -44,16 +44,14 @@ void Shader::Compile()
     GLint status;
     char buffer[512];
 
-    glCompileShader(m_id);
-    glGetShaderiv(m_id, GL_COMPILE_STATUS, &status);
-    glGetShaderInfoLog(m_id, 512, NULL, buffer);
+    glCompileShader(m_id); ErrorLogger::CheckForErrors("glCompileShader");
+    glGetShaderiv(m_id, GL_COMPILE_STATUS, &status); ErrorLogger::CheckForErrors("glGetShaderiv");
+    glGetShaderInfoLog(m_id, 512, NULL, buffer); ErrorLogger::CheckForErrors("glGetShaderInfoLog");
 
-    if (status) {
+    if (status)
         printf("Shader compilation succeeded!\n");
-    }
-    else {
+    else
         printf("Shader compilation failed: %s\n", buffer);
-    }
 }
 
 /**
@@ -61,5 +59,5 @@ void Shader::Compile()
  */
 void Shader::Delete()
 {
-    glDeleteShader(m_id);
+    glDeleteShader(m_id); ErrorLogger::CheckForErrors("glDeleteShader");
 }

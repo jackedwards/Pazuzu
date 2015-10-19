@@ -7,17 +7,8 @@
  */
 VertexShader::VertexShader(const std::string& fileName)
 {
-    m_id = glCreateShader(GL_VERTEX_SHADER);
+    m_id = glCreateShader(GL_VERTEX_SHADER); ErrorLogger::CheckForErrors("glCreateShader - vertex");
     std::string source = LoadSourceFromFile(fileName);
     SetSource(source.c_str());
     Compile();
-}
-
-/**
-* @brief Destructor.
-*
-*/
-VertexShader::~VertexShader()
-{
-	Delete();
 }

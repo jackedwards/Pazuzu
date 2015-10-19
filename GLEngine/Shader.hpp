@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <streambuf>
+#include "ErrorLogger.hpp"
 
 class Shader
 {

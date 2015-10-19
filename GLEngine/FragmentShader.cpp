@@ -7,17 +7,8 @@
  */
 FragmentShader::FragmentShader(const std::string& fileName)
 {
-    m_id = glCreateShader(GL_FRAGMENT_SHADER);
+    m_id = glCreateShader(GL_FRAGMENT_SHADER); ErrorLogger::CheckForErrors("glCreateShader - fragment");
     std::string source = LoadSourceFromFile(fileName);
     SetSource(source.c_str());
     Compile();
-}
-
-/**
-* @brief Destructor.
-*
-*/
-FragmentShader::~FragmentShader()
-{
-	Delete();
 }

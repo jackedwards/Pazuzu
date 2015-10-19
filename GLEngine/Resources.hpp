@@ -19,7 +19,7 @@ private:
 public:
 	static void LoadEverything();
 	static Texture* GetTexture(const std::string& name);
-	static const std::shared_ptr<ShaderProgram>& GetShaderProgram(const std::string& name);
+	static const std::shared_ptr<ShaderProgram>& GetShader(const std::string& name);
 private:
 	Resources();
 	static void LoadTexture(const std::string& name, const std::string& path);

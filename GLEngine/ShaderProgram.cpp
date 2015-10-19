@@ -5,7 +5,7 @@
  */
 ShaderProgram::ShaderProgram()
 {
-    m_id = glCreateProgram();
+    m_id = glCreateProgram(); ErrorLogger::CheckForErrors("glCreateProgram");
 }
 
 /**
@@ -17,17 +17,14 @@ ShaderProgram::ShaderProgram()
  */
 ShaderProgram::ShaderProgram(VertexShader& vert, FragmentShader& frag)
 {
-    m_id = glCreateProgram();
-    ErrorLogger::CheckForErrors("glCreateProgram");
-
-    glAttachShader(m_id, vert.m_id);
-    ErrorLogger::CheckForErrors("glAttachShader - vertex shader");
-    glAttachShader(m_id, frag.m_id);
-    ErrorLogger::CheckForErrors("glAttachShader - fragment shader");
-	glLinkProgram(m_id);
-    ErrorLogger::CheckForErrors("glLinkProgram");
-    vert.Delete();
-    frag.Delete();
+    m_id = glCreateProgram();        ErrorLogger::CheckForErrors("glCreateProgram - ID: " + std::to_string(m_id));
+    glAttachShader(m_id, vert.m_id); ErrorLogger::CheckForErrors("glAttachShader - vertex");
+    glAttachShader(m_id, frag.m_id); ErrorLogger::CheckForErrors("glAttachShader - fragment");
+	glLinkProgram(m_id);             ErrorLogger::CheckForErrors("glLinkProgram");
+    glDetachShader(m_id, vert.m_id); ErrorLogger::CheckForErrors("glDetachShader - vertex");
+    glDetachShader(m_id, frag.m_id); ErrorLogger::CheckForErrors("glDetachShader - fragment");
+    glDeleteShader(vert.m_id);       ErrorLogger::CheckForErrors("glDeleteShader - vertex");
+    glDeleteShader(frag.m_id);       ErrorLogger::CheckForErrors("glDeleteShader - fragment");
 }
 
 /**
@@ -46,17 +43,22 @@ ShaderProgram::~ShaderProgram()
  */
 void ShaderProgram::Attach(Shader& shader)
 {
-    glAttachShader(m_id, shader.m_id);
+    glAttachShader(m_id, shader.m_id); ErrorLogger::CheckForErrors("glAttachShader");
+}
+
+void ShaderProgram::Detach(Shader& shader)
+{
+    glDetachShader(m_id, shader.m_id); ErrorLogger::CheckForErrors("glDetachShader");
 }
 
 /**
  * @brief Links the shader program and installs it as part
  *        of the current rendering state
  */
-void ShaderProgram::Use()
+ShaderProgram& ShaderProgram::Use()
 {
-    glUseProgram(m_id);
-    ErrorLogger::CheckForErrors("glUseProgram");
+    glUseProgram(m_id); ErrorLogger::CheckForErrors("glUseProgram");
+    return *this;
 }
 
 /**
@@ -64,8 +66,7 @@ void ShaderProgram::Use()
  */
 void ShaderProgram::Delete()
 {
-    glDeleteProgram(m_id);
-    ErrorLogger::CheckForErrors("glDeleteProgram");
+    glDeleteProgram(m_id); ErrorLogger::CheckForErrors("glDeleteProgram");
 }
 
 /**
@@ -76,16 +77,14 @@ void ShaderProgram::Delete()
  */
 GLint ShaderProgram::GetAttribLocation(const std::string& name)
 {
-    GLint location = glGetAttribLocation(m_id, name.c_str());
-    ErrorLogger::CheckForErrors("glGetAttribLocation");
+    GLint location = glGetAttribLocation(m_id, name.c_str()); ErrorLogger::CheckForErrors("glGetAttribLocation");
 
     return location;
 }
 
 GLint ShaderProgram::GetUniformLocation(const std::string& name)
 {
-    GLint location = glGetUniformLocation(m_id, name.c_str());
-    ErrorLogger::CheckForErrors("glGetUniformLocation");
+    GLint location = glGetUniformLocation(m_id, name.c_str()); ErrorLogger::CheckForErrors("glGetUniformLocation");
 
     return location;
 }

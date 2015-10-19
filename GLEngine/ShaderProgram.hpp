@@ -16,7 +16,8 @@ public:
     ShaderProgram(VertexShader& vert, FragmentShader& frag);
 	~ShaderProgram();
     void Attach(Shader& shader);
-    void Use();
+    void Detach(Shader& shader);
+    ShaderProgram& Use();
     void Delete();
     GLint GetAttribLocation(const std::string& name);
 	GLint GetUniformLocation(const std::string& name);

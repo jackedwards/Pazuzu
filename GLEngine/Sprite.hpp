@@ -13,11 +13,10 @@
 
 class Sprite : public Component
 {
-public:
-	std::shared_ptr<ShaderProgram> mp_shaderProgram;
 private:
 	Texture* mp_texture;
 	Color m_color;
+	std::shared_ptr<ShaderProgram> mp_shader;
 
 public:
 	Sprite(GameObject* gameObject);
@@ -25,8 +24,10 @@ public:
 	virtual void Update() override;
 	void SetTexture(Texture* p_texture);
 	void SetColor(const Color& color);
+	void SetShader(const std::shared_ptr<ShaderProgram> shader);
 	const Texture* GetTexture() const;
 	const Color& GetColor() const;
+	const std::shared_ptr<ShaderProgram>& GetShader() const;
 };
 
 #endif
