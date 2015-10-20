@@ -11,8 +11,8 @@ void Game::Init()
 
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(m_width), static_cast<GLfloat>(m_height), 0.0f, -1.0f, 1.0f);
 
-	glUniformMatrix4fv(Resources::GetShader("default")->Use().GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
-	glUniformMatrix4fv(Resources::GetShader("red")->Use().GetUniformLocation("projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	Resources::GetShader("default")->Use().SetMatrix4("projection", projection);
+	Resources::GetShader("red")->Use().SetMatrix4("projection", projection);
 
 	mp_renderer = new SpriteRenderer();
 }

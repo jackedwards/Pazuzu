@@ -1,21 +1,24 @@
 LONG TERM:
-1. Hierarchical GameObjects
-2. Make each GameObject's transform relative to their parent GameObject's transform
-3. Level management
-4. PNG support for transparency
-5. Tilemaps
-6. Audio handling
-7. Improved input handling
-8. Particle system
-9. Simple rigidbody physics
-10. Data saving / loading
-11. Text rendering
-12. Animation system
-13. Camera class, movable cameras etc.
-14. UI management (widgets and a method of describing them)
-15. OPTIMIZE EVERYTHING
+- Hierarchical GameObjects
+- Make each GameObject's transform relative to their parent GameObject's transform
+- Level management
+- PNG support for transparency
+- Tilemaps
+- Audio handling
+- Improved input handling
+- Particle system
+- Simple rigidbody physics
+- Data saving / loading
+- Text rendering
+- Animation system
+- Camera class, movable cameras etc.
+- UI management (widgets and a method of describing them)
+- OPTIMIZE EVERYTHING
 
 SHORT TERM:
-1. Add tags to GameObjects
-2. Add rendering layers to sprites
+- Add tags to GameObjects
+- Add rendering layers to sprites
 DONE! 3. Allow shaders to be used on a per-sprite basis
+
+TO FIX:
+- If the same vertex/fragment shader is used with multiple shader programs they are compiled more than once

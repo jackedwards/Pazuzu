@@ -32,7 +32,6 @@ void MainLevel::Init()
 
 	background->AddComponent<Sprite>();
 	background->GetComponent<Sprite>()->SetTexture(Resources::GetTexture("bliss"));
-	background->GetComponent<Sprite>()->SetShader(Resources::GetShader("red"));
 
 	player->AddComponent<Sprite>();
 	player->GetComponent<Sprite>()->SetTexture(Resources::GetTexture("awesomeface"));

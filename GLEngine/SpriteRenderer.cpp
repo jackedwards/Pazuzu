@@ -3,6 +3,8 @@
 SpriteRenderer::SpriteRenderer()
 {
 	this->InitRenderData();
+	mp_shader = Resources::GetShader("default");
+	mp_shader->Use();
 }
 
 SpriteRenderer::~SpriteRenderer()
@@ -29,9 +31,16 @@ void SpriteRenderer::Draw(std::shared_ptr<GameObject>& gameObject)
 	model = glm::rotate(model, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
 	model = glm::scale(model, glm::vec3(size, 1.0f));
+	std::shared_ptr<ShaderProgram> spriteShader = spriteComp->GetShader();
+	
+	if (mp_shader != spriteShader)
+	{
+		mp_shader = spriteShader;
+		mp_shader->Use();
+	}
 
-	glUniformMatrix4fv(spriteComp->GetShader()->Use().GetUniformLocation("model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniform3f(spriteComp->GetShader()->Use().GetUniformLocation("spriteColor"), color.r, color.g, color.b);
+	mp_shader->SetMatrix4("model", model);
+	mp_shader->SetVector3f("spriteColor", color.r, color.g, color.b);
 
 	texture->Bind();
 

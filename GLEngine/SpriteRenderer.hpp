@@ -2,8 +2,6 @@
 #define SPRITERENDERER_HPP
 
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "ErrorLogger.hpp"
 #include "ShaderProgram.hpp"
 #include "Texture.hpp"
@@ -17,6 +15,7 @@ class SpriteRenderer
 {
 private:
 	GLuint m_vao;
+	std::shared_ptr<ShaderProgram> mp_shader;
 	BlendMode m_blendMode;
 
 public:
