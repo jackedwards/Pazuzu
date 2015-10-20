@@ -16,6 +16,8 @@ public:
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void OnCollisionEnter(Collision collision) { }
+	virtual void OnCollisionStay(Collision collision) { }
+	virtual void OnCollisionExit(Collision collision) { }
 };
 
 #endif

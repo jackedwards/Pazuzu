@@ -35,8 +35,30 @@ void Level::CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_pt
 
 		if (colliderA->CollidingWith(colliderB))
 		{
-			for (auto& kv : objectA->m_components)
-				kv.second->OnCollisionEnter(colliderB->m_collision);
+			if (!colliderA->m_colliding)
+			{
+				for (auto& kv : objectA->m_components)
+					kv.second->OnCollisionEnter(colliderB->m_collision);
+				colliderA->m_colliding = true;
+				return;
+			}
+
+			if (colliderA->m_colliding)
+			{
+				for (auto& kv : objectA->m_components)
+					kv.second->OnCollisionStay(colliderB->m_collision);
+				return;
+			}
+		}
+		else
+		{
+			if (colliderA->m_colliding)
+			{
+				for (auto& kv : objectA->m_components)
+					kv.second->OnCollisionExit(colliderB->m_collision);
+				colliderA->m_colliding = false;
+				return;
+			}
 		}
 	}
 }

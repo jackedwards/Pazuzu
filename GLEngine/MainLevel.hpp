@@ -2,8 +2,7 @@
 #define MAINLEVEL_HPP
 
 #include "Level.hpp"
-#include "PlayerMove.hpp"
-#include "BallMove.hpp"
+#include "PlayerController.hpp"
 
 class MainLevel : public Level
 {
