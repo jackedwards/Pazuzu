@@ -7,7 +7,6 @@ class Collision
 {
 public:
 	GameObject* mp_gameObject;
-	glm::vec2 m_intersection;
 
 public:
 	Collision(GameObject* gameObject);

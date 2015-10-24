@@ -6,7 +6,7 @@ void MainLevel::Init()
 {
 	CreateObject("Background", glm::vec2(0, 0), glm::vec2(800, 600), 0.0f);
 	CreateObject("Player", glm::vec2(0, 0), glm::vec2(50, 50), 0.0f);
-	CreateObject("Ground", glm::vec2(0, 300), glm::vec2(300, 20), 0.0f);
+	CreateObject("Ground", glm::vec2(0, 500), glm::vec2(800, 20), 0.0f);
 
 	std::shared_ptr<GameObject> background = GetObject("Background");
 	background->AddComponent<Sprite>();

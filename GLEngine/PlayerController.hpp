@@ -9,9 +9,7 @@ class PlayerController : public Component
 {
 private:
 	glm::vec2 m_velocity;
-	GLfloat m_moveSpeed;
-	GLfloat m_fallSpeed;
-	GLfloat m_fallAcceleration;
+	GLfloat m_speed;
 	GLboolean m_isGrounded = false;
 
 public:
