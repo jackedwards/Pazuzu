@@ -12,8 +12,11 @@ class Level
 {
 protected:
 	std::vector<std::shared_ptr<GameObject> > m_gameObjects;
+	std::vector<std::shared_ptr<GameObject> > m_gameObjectQueue;
+	std::string m_name;
 
 public:
+	Level(std::string name);
 	virtual void Init() = 0;
 	void Update(GLfloat dt);
 	void Render(SpriteRenderer* renderer);
@@ -23,6 +26,7 @@ public:
 	void CreateObject(glm::vec2 position, glm::vec2 size, GLfloat rotation);
 	void CreateObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);
 	const std::shared_ptr<GameObject> GetObject(const std::string name) const;
+	const std::string& GetName() const;
 };
 
 #endif

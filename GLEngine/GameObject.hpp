@@ -22,7 +22,7 @@ public:
 	std::string m_name;
 	Transform m_transform;
 	std::unordered_map<std::type_index, std::shared_ptr<Component> > m_components;
-	GLboolean m_enabled = true;
+	GLboolean m_enabled;
 
 public:
 	GameObject(std::string name);

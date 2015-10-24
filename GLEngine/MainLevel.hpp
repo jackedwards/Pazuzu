@@ -7,7 +7,7 @@
 class MainLevel : public Level
 {
 public:
-	MainLevel();
+	MainLevel(std::string name);
 	virtual void Init() override;
 };
 
