@@ -8,7 +8,7 @@ void Level::Update(GLfloat dt)
 	{
 		for (auto& kv : gameObject->m_components)
 		{
-			if (gameObject->m_enabled)
+			if (gameObject->GetEnabled())
 			{
 				kv.second->Update();
 			}
@@ -19,20 +19,19 @@ void Level::Update(GLfloat dt)
 	{
 		for (int j = 0; j < m_gameObjects.size(); ++j)
 		{
-			if (m_gameObjects[i]->m_enabled && m_gameObjects[j]->m_enabled)
+			if (m_gameObjects[i]->GetEnabled() && m_gameObjects[j]->GetEnabled())
 				if (m_gameObjects[i] != m_gameObjects[j])
 					CheckCollisions(m_gameObjects[i], m_gameObjects[j]);
 		}
 	}
 
-	m_gameObjects.insert(m_gameObjects.end(), m_gameObjectQueue.begin(), m_gameObjectQueue.end());
-	m_gameObjectQueue.clear();
+	AddFromQueue();	
 }
 
 void Level::Render(SpriteRenderer* renderer)
 {
 	for (auto& gameObject : m_gameObjects)
-		if (gameObject->m_enabled)
+		if (gameObject->GetEnabled())
 			if (gameObject->HasComponent<Sprite>())
 				renderer->Draw(gameObject);
 }
@@ -74,41 +73,76 @@ void Level::CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_pt
 	}
 }
 
-void Level::CreateObject()
+std::shared_ptr<GameObject> Level::CreateObject()
 {
-	m_gameObjectQueue.push_back(std::make_shared<GameObject>("GameObject"));
+	std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>("GameObject");
+	m_gameObjectQueue.push_back(gameObject);
+
+	return gameObject;
 }
 
-void Level::CreateObject(std::string name)
+std::shared_ptr<GameObject> Level::CreateObject(std::string name)
 {
-	m_gameObjectQueue.push_back(std::make_shared<GameObject>(name));
+	std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>(name);
+	m_gameObjectQueue.push_back(gameObject);
+
+	return gameObject;
 }
 
-void Level::CreateObject(glm::vec2 position, glm::vec2 size, GLfloat rotation)
+std::shared_ptr<GameObject> Level::CreateObject(glm::vec2 position, glm::vec2 size, GLfloat rotation)
 {
-	m_gameObjectQueue.push_back(std::make_shared<GameObject>("GameObject", position, size, rotation));
+	std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>("GameObject", position, size, rotation);
+	m_gameObjectQueue.push_back(gameObject);
+
+	return gameObject;
 }
 
-void Level::CreateObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation)
+std::shared_ptr<GameObject> Level::CreateObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation)
 {
-	m_gameObjectQueue.push_back(std::make_shared<GameObject>(name, position, size, rotation));
+	std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>(name, position, size, rotation);
+	m_gameObjectQueue.push_back(gameObject);
+
+	return gameObject;
 }
 
-const std::shared_ptr<GameObject> Level::GetObject(const std::string name) const
+const std::shared_ptr<GameObject> Level::GetObject(const std::string& name) const
 {
 	for (auto& gameObject : m_gameObjects)
-		if (gameObject->m_name == name)
+		if (gameObject->GetName() == name)
 			return gameObject;
 
 	for (auto& gameObject : m_gameObjectQueue)
-		if (gameObject->m_name == name)
+		if (gameObject->GetName() == name)
 			return gameObject;
 
-	std::cout << "Object could not be found.\n";
+	std::cout << "No object found with the name '" << name <<  "'.\n";
 	return nullptr;
+}
+
+const std::vector<std::shared_ptr<GameObject> > Level::GetObjectsWithTag(const std::string& tag) const
+{
+	std::vector<std::shared_ptr<GameObject> > gameObjects;
+	for (auto& gameObject : m_gameObjects)
+		if (gameObject->GetTag() == tag)
+			gameObjects.push_back(gameObject);
+
+	for (auto& gameObject : m_gameObjectQueue)
+		if (gameObject->GetTag() == tag)
+			gameObjects.push_back(gameObject);
+
+	if (gameObjects.size() == 0)
+		std::cout << "No object found with the tag '" << tag <<  "'.\n";
+
+	return gameObjects;
 }
 
 const std::string& Level::GetName() const
 {
 	return m_name;
+}
+
+void Level::AddFromQueue()
+{
+	m_gameObjects.insert(m_gameObjects.end(), m_gameObjectQueue.begin(), m_gameObjectQueue.end());
+	m_gameObjectQueue.clear();
 }

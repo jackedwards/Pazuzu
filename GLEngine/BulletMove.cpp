@@ -13,5 +13,5 @@ void BulletMove::Start()
 
 void BulletMove::Update()
 {
-	mp_gameObject->m_transform.Move(m_velocity);
+	mp_gameObject->Move(m_velocity);
 }

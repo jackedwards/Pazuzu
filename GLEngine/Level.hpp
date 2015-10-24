@@ -21,12 +21,15 @@ public:
 	void Update(GLfloat dt);
 	void Render(SpriteRenderer* renderer);
 	void CheckCollisions(std::shared_ptr<GameObject>& objectA, std::shared_ptr<GameObject>& objectB);
-	void CreateObject();
-	void CreateObject(std::string name);
-	void CreateObject(glm::vec2 position, glm::vec2 size, GLfloat rotation);
-	void CreateObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);
-	const std::shared_ptr<GameObject> GetObject(const std::string name) const;
+	std::shared_ptr<GameObject> CreateObject();
+	std::shared_ptr<GameObject> CreateObject(std::string name);
+	std::shared_ptr<GameObject> CreateObject(glm::vec2 position, glm::vec2 size, GLfloat rotation);
+	std::shared_ptr<GameObject> CreateObject(std::string name, glm::vec2 position, glm::vec2 size, GLfloat rotation);
+	const std::shared_ptr<GameObject> GetObject(const std::string& name) const;
+	const std::vector<std::shared_ptr<GameObject> > GetObjectsWithTag(const std::string& tag) const;
 	const std::string& GetName() const;
+private:
+	void AddFromQueue();
 };
 
 #endif

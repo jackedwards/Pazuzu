@@ -15,7 +15,7 @@ void Rigidbody::Update()
 {
 	m_velocity.y += m_gravity;
 
-	mp_gameObject->m_transform.Move(m_velocity);
+	mp_gameObject->Move(m_velocity);
 }
 
 void Rigidbody::OnCollisionEnter(Collision collision)

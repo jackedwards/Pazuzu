@@ -13,8 +13,8 @@ void RectangleCollider::Start()
 
 void RectangleCollider::Update()
 {
-	m_size = mp_gameObject->m_transform.GetSize();
-	m_position = mp_gameObject->m_transform.GetPosition();
+	m_size = mp_gameObject->GetSize();
+	m_position = mp_gameObject->GetPosition();
 }
 
 GLboolean RectangleCollider::CollidingWith(std::shared_ptr<RectangleCollider>& other)

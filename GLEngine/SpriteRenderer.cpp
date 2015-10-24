@@ -15,9 +15,9 @@ SpriteRenderer::~SpriteRenderer()
 void SpriteRenderer::Draw(std::shared_ptr<GameObject>& gameObject)
 {
 	std::shared_ptr<Sprite> spriteComp = gameObject->GetComponent<Sprite>();
-	glm::vec2 position = gameObject->m_transform.GetPosition();
-	glm::vec2 size = gameObject->m_transform.GetSize();
-	GLfloat rotation = gameObject->m_transform.GetRotation();
+	glm::vec2 position = gameObject->GetPosition();
+	glm::vec2 size = gameObject->GetSize();
+	GLfloat rotation = gameObject->GetRotation();
 	Color color = spriteComp->GetColor();
 	const Texture* texture = spriteComp->GetTexture();
 	BlendMode spriteBlendMode = spriteComp->GetBlendMode();
